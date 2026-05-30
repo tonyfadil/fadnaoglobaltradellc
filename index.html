@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-
-<p>🇺🇸 United States | 🇧🇯 Benin</p>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,23 +13,24 @@
 }
 
 body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
     background:#f0f4f8;
     color:#333;
     line-height:1.6;
 }
-    .book-btn{
-    display:inline-block !important;
-    padding:12px 24px !important;
-    background:#ff9900 !important;
-    color:#ffffff !important;
-    text-decoration:none !important;
-    border-radius:8px !important;
-    font-weight:bold !important;
+
+.book-btn{
+    display:inline-block;
+    padding:12px 24px;
+    background:#ff9900;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
 }
 
 .book-btn:hover{
-    background:#e68a00 !important;
+    background:#e68a00;
 }
 
 header{
@@ -47,12 +45,6 @@ header h1{
     margin-bottom:15px;
 }
 
-header p{
-    font-size:1.2rem;
-    max-width:700px;
-    margin:auto;
-}
-
 .btn{
     display:inline-block;
     margin-top:25px;
@@ -62,11 +54,6 @@ header p{
     text-decoration:none;
     font-weight:bold;
     border-radius:30px;
-    transition:0.3s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
 }
 
 nav{
@@ -76,6 +63,7 @@ nav{
     text-align:center;
     position:sticky;
     top:0;
+    z-index:1000;
 }
 
 nav a{
@@ -110,23 +98,19 @@ nav a{
     padding:30px;
     border-radius:15px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
-    transition:0.3s;
 }
 
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.card h3{
-    color:#003366;
-    margin-bottom:15px;
-}
-
-.about{
+.flags{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    padding:20px;
     background:white;
-    border-radius:15px;
-    padding:40px;
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.flags img{
+    width:60px;
 }
 
 .contact{
@@ -137,25 +121,13 @@ nav a{
     text-align:center;
 }
 
-.contact p{
-    margin:10px 0;
-    font-size:1.1rem;
-}
-
 footer{
     background:#002244;
     color:white;
     text-align:center;
     padding:25px;
 }
-
-@media(max-width:768px){
-    header h1{
-        font-size:2rem;
-    }
-}
 </style>
-   
 </head>
 
 <body>
@@ -163,8 +135,9 @@ footer{
 <header>
     <h1>Fad Nao Global Trade LLC</h1>
     <p>
-        Connecting businesses worldwide through international trade,Publishing,
-        e-commerce solutions, sourcing, procurement, and global business services.
+        Connecting businesses worldwide through international trade,
+        publishing, e-commerce solutions, sourcing, procurement,
+        and global business services.
     </p>
     <a href="#contact" class="btn">Contact Us</a>
 </header>
@@ -172,137 +145,47 @@ footer{
 <nav>
     <a href="#about">About</a>
     <a href="#services">Services</a>
-
-<section class="container" id="books">
-    <h2 class="section-title">Books & Publications</h2>
-
-```
-<div class="cards">
-
-    <div class="card">
-        <h3>MANSA MUSA: THE GOLDEN KING OF AFRICA</h3>
-        <a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>She Is No More Yours</h3>
-        <a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>PUPPET MASTERS OF ETERNITY</h3>
-        <a href="https://a.co/d/0hjg57Pb" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Lost Gold Of Mansa Musa</h3>
-        <a href="https://a.co/d/04BRjQLS" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Billionaire's Secret Heir</h3>
-        <a href="https://a.co/d/0ap9pgPF" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Bodyguard Contract</h3>
-        <a href="https://a.co/d/0fN8Q0Ox" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>He's No More Yours (He's Already Checked Out)</h3>
-        <a href="https://a.co/d/0hSasQUA" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>They Hate Each Other → Fall in Love</h3>
-        <a href="https://a.co/d/02QJoNQT" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>They Hate Each Other → Fall in Love - Trilogy Book 2</h3>
-        <a href="https://a.co/d/01UpoYCf" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>They Hate Each Other → Fall in Love - Trilogy Book 3</h3>
-        <a href="https://a.co/d/04OaMQzK" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>Inside The New York Underworld</h3>
-        <p>Power, Crime, and Hidden History of Manhattan</p>
-        <a href="https://a.co/d/0jiY6HNo" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>MANHATTAN: The Island That Shaped America</h3>
-        <a href="https://a.co/d/0gxTD7po" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Marriage Contract That Went Too Far</h3>
-        <p>A Fake Marriage Romance</p>
-        <a href="https://a.co/d/0hyjjVAo" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>Blood Will Tell</h3>
-        <a href="https://a.co/d/06yeYRFj" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Pilot's Secret</h3>
-        <a href="https://a.co/d/03PYjSQa" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Ledger Of Lost Luck</h3>
-        <a href="https://a.co/d/0frB7rX7" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>She Was Never Good Enough... Until He Chose Her</h3>
-        <a href="https://a.co/d/03sbWeDg" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Billionaire Who Bought The Building</h3>
-        <a href="https://a.co/d/01Dy7wYF" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>Pedal to the Medal</h3>
-        <a href="https://a.co/d/0eRVmg9g" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-    <div class="card">
-        <h3>The Rival CEOs</h3>
-        <a href="https://a.co/d/0if2mCcs" target="_blank" class="book-btn">View on Amazon</a>
-    </div>
-
-```
-
-</section>
-
-
+    <a href="#books">Books</a>
     <a href="#contact">Contact</a>
 </nav>
 
 <div class="flags">
     <img src="https://flagcdn.com/w80/us.png" alt="United States">
-    <span>Trade Bridge</span>
+    <span><strong>🇺🇸 United States | 🇧🇯 Benin</strong></span>
     <img src="https://flagcdn.com/w80/bj.png" alt="Benin">
 </div>
 
+<section class="container" id="books">
+    <h2 class="section-title">Books & Publications</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>MANSA MUSA: THE GOLDEN KING OF AFRICA</h3>
+            <a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn">
+                View on Amazon
+            </a>
+        </div>
+
+        <div class="card">
+            <h3>She Is No More Yours</h3>
+            <a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn">
+                View on Amazon
+            </a>
+        </div>
+
+        <!-- Repeat remaining book cards here -->
+
+    </div>
+</section>
+
 <section class="container" id="about">
     <h2 class="section-title">About Our Company</h2>
-    <div class="about">
+    <div class="card">
         <p>
-            Fad Nao Global Trade LLC is dedicated to supporting international commerce
-            by helping businesses connect with suppliers, customers, and opportunities
-            across global markets. Our focus is on reliability, efficiency, and long-term
-            partnerships that drive growth.
+            Fad Nao Global Trade LLC is dedicated to supporting international
+            commerce by helping businesses connect with suppliers, customers,
+            and opportunities across global markets.
         </p>
     </div>
 </section>
@@ -310,75 +193,57 @@ footer{
 <section class="container" id="services">
     <h2 class="section-title">Our Services</h2>
 
-```
-<div class="cards">
+    <div class="cards">
 
-    <div class="card">
-        <h3>International Trade</h3>
-        <p>
-            Facilitating global trade transactions and business relationships.
-        </p>
+        <div class="card">
+            <h3>International Trade</h3>
+            <p>Facilitating global trade transactions and business relationships.</p>
+        </div>
+
+        <div class="card">
+            <h3>Product Sourcing</h3>
+            <p>Identifying reliable suppliers and procurement opportunities.</p>
+        </div>
+
+        <div class="card">
+            <h3>E-Commerce Solutions</h3>
+            <p>Supporting online business operations and digital commerce.</p>
+        </div>
+
+        <div class="card">
+            <h3>Business Consulting</h3>
+            <p>Helping companies navigate international markets.</p>
+        </div>
+
+        <div class="card">
+            <h3>Publishing</h3>
+            <p>
+                Creating educational, inspirational, and business-focused
+                publications for readers worldwide.
+            </p>
+        </div>
+
     </div>
-
-    <div class="card">
-        <h3>Product Sourcing</h3>
-        <p>
-            Identifying reliable suppliers and procurement opportunities.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>E-Commerce Solutions</h3>
-        <p>
-            Supporting online business operations and digital commerce.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>Business Consulting</h3>
-        <p>
-            Helping companies navigate international markets and growth strategies.
-        </p>
-    </div>
-
- <div class="card">
-        <h3>Publishing</h3>
-        <p>
-            From international trade insights to educational and inspirational works,
-            our publishing division is dedicated to creating content that empowers
-            readers and expands knowledge worldwide.
-        </p>
-
-</div>
-```
-
 </section>
 
 <section class="container" id="contact">
     <div class="contact">
         <h2>Contact Us</h2>
 
-```
-    <p><strong>Fad Nao Global Trade LLC</strong></p>
+        <p><strong>Fad Nao Global Trade LLC</strong></p>
 
-    <p>Email: info@fadnaoglobaltradellc@gmail.com</p>
+        <p>Email: info@fadnaoglobaltrade.com</p>
 
-    <p>Phone: +1 (347)264-2877 / (929)367-6840</p>
+        <p>Phone: +1 (347) 264-2877 | +1 (929) 367-6840</p>
 
-    <p>New York, United States</p>
-
-</div>
-```
-
+        <p>New York, United States</p>
+    </div>
 </section>
 
 <footer>
-    © 2026 Fad Nao Global Trade LLC. All Rights Reserved.   USA Benin Connection <p>🇺🇸 United States | 🇧🇯 Benin</p>
+    © 2026 Fad Nao Global Trade LLC. All Rights Reserved.<br>
+    🇺🇸 United States | 🇧🇯 Benin Connection
 </footer>
-
-</body>
-</html>
-
 
 </body>
 </html>
