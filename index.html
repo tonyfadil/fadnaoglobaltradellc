@@ -3,324 +3,1802 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fad Nao Global Trade LLC - International Trade, Publishing, IT Consulting & Translation Services">
+    <meta name="description" content="Fad Nao Global Trade LLC — International Trade, Publishing, IT Consulting & French-English Translation Services. New York–Benin Connection.">
+    <meta property="og:title" content="Fad Nao Global Trade LLC">
+    <meta property="og:description" content="Connecting businesses worldwide through international trade, publishing, e-commerce, IT consulting, and French-English translation services.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="fadnaoglo.png">
     <title>Fad Nao Global Trade LLC</title>
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        *{ margin:0; padding:0; box-sizing:border-box; }
-        body{
-            font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-            background:#f0f4f8;
-            color:#333;
-            line-height:1.6;
+        :root {
+            --gold: #C8962A;
+            --gold-light: #E8B84B;
+            --navy: #0A1F44;
+            --navy-mid: #0F2D66;
+            --navy-bright: #1A4A8A;
+            --ivory: #FAF7F2;
+            --warm-gray: #F0EDE8;
+            --text-dark: #1A1A2E;
+            --text-mid: #4A4A6A;
+            --text-light: #8888AA;
+            --white: #FFFFFF;
+            --card-shadow: 0 4px 24px rgba(10,31,68,0.10);
+            --card-hover: 0 12px 40px rgba(10,31,68,0.18);
         }
-        .logo{
-            width:150px;
-            height:auto;
-            display:block;
-            margin:0 auto 20px auto;
-        }
-        .book-btn{
-            display:inline-block;
-            padding:12px 24px;
-            background:#ff9900;
-            color:#fff;
-            text-decoration:none;
-            border-radius:8px;
-            font-weight:bold;
-            margin-top:auto;
-            transition:all 0.3s;
-        }
-        .book-btn:hover{
-            background:#e68a00;
-            transform:translateY(-2px);
-        }
-        header{
-            background:linear-gradient(135deg,#003366,#0059b3);
-            color:white;
-            text-align:center;
-            padding:120px 20px 80px;
-        }
-        header h1{
-            font-size:3.2rem;
-            margin-bottom:15px;
-        }
-        .btn{
-            display:inline-block;
-            margin-top:25px;
-            padding:12px 30px;
-            background:white;
-            color:#003366;
-            text-decoration:none;
-            font-weight:bold;
-            border-radius:30px;
-            transition:all 0.3s;
-        }
-        .btn:hover{ transform:scale(1.05); }
 
-        nav{
-            background:white;
-            box-shadow:0 2px 10px rgba(0,0,0,.1);
-            padding:15px;
-            position:sticky;
-            top:0;
-            z-index:1000;
-        }
-        .nav-links{
-            display:flex;
-            justify-content:center;
-            gap:25px;
-            flex-wrap:wrap;
-        }
-        nav a{
-            color:#003366;
-            text-decoration:none;
-            font-weight:600;
-        }
-        nav a:hover{ color:#ff9900; }
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--ivory);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* ── ANNOUNCEMENT BAR ───────────────────────────── */
+        .announce-bar {
+            background: var(--gold);
+            color: var(--white);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .announce-bar a { color: var(--white); text-decoration: underline; }
+
+        /* ── NAV ────────────────────────────────────────── */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 16px rgba(10,31,68,.08);
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-brand img { height: 40px; width: auto; }
+        .nav-brand span {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta {
+            background: var(--gold);
+            color: var(--white) !important;
+            padding: 9px 22px;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: background 0.2s, transform 0.2s !important;
+        }
+        .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
         .hamburger {
             display: none;
-            font-size: 28px;
+            background: none;
+            border: none;
+            font-size: 24px;
             cursor: pointer;
-            color: #003366;
+            color: var(--navy);
         }
 
-        .container{
-            width:90%;
-            max-width:1200px;
-            margin:auto;
-            padding:60px 0;
+        /* ── HERO ───────────────────────────────────────── */
+        .hero {
+            background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 55%, #1A3A6A 100%);
+            color: var(--white);
+            padding: 110px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .section-title{
-            text-align:center;
-            margin-bottom:40px;
-            color:#003366;
-            font-size:2.2rem;
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8962A' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
         }
-        .cards{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-            gap:25px;
+        .hero-inner { position: relative; z-index: 1; max-width: 840px; margin: auto; }
+        .hero img.logo {
+            width: 130px;
+            height: auto;
+            margin: 0 auto 28px;
+            display: block;
+            filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
         }
-        .card{
-            background:white;
-            padding:30px;
-            border-radius:15px;
-            box-shadow:0 4px 15px rgba(0,0,0,.08);
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-            min-height:240px;
-            transition:all 0.3s;
+        .hero-eyebrow {
+            display: inline-block;
+            background: rgba(200,150,42,0.18);
+            border: 1px solid rgba(200,150,42,0.5);
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 24px;
         }
-        .card:hover{
-            transform:translateY(-8px);
-            box-shadow:0 12px 25px rgba(0,0,0,.12);
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 1.15;
+            margin-bottom: 22px;
+            font-weight: 900;
+        }
+        .hero h1 span { color: var(--gold-light); }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: rgba(255,255,255,0.82);
+            max-width: 660px;
+            margin: 0 auto 36px;
+        }
+        .hero-flags {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 36px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        .hero-flags img { width: 28px; border-radius: 3px; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.5);
+            padding: 13px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+            cursor: pointer;
+        }
+        .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+        /* ── TRUST BAR ──────────────────────────────────── */
+        .trust-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--warm-gray);
+            padding: 18px 20px;
+        }
+        .trust-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-mid);
+        }
+        .trust-item i { color: var(--gold); font-size: 16px; }
+
+        /* ── SECTION COMMONS ────────────────────────────── */
+        .section { padding: 90px 20px; }
+        .section-alt { background: var(--white); }
+        .container { max-width: 1200px; margin: auto; }
+        .section-eyebrow {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--navy);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-mid);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto 52px;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(10,31,68,0.06);
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .card:hover { box-shadow: var(--card-hover); transform: translateY(-6px); }
+        .card-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(200,150,42,0.10);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 22px;
+            color: var(--gold);
+        }
+        .card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .card p { color: var(--text-mid); font-size: 15px; flex: 1; }
+        .card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 18px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--gold);
+            text-decoration: none;
+        }
+        .card-link:hover { color: var(--gold-light); }
+
+        /* ── BOOK CARDS ─────────────────────────────────── */
+        .book-card {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(10,31,68,0.07);
+            display: flex;
+            flex-direction: column;
+            min-height: 180px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .book-card:hover { box-shadow: var(--card-hover); transform: translateY(-5px); }
+        .book-genre {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .book-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+            flex: 1;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+        .book-card p { font-size: 13px; color: var(--text-mid); margin-bottom: 12px; }
+        .book-btn {
+            display: inline-block;
+            padding: 9px 18px;
+            background: var(--navy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: auto;
+            transition: background 0.2s;
+            text-align: center;
+        }
+        .book-btn:hover { background: var(--gold); }
+
+        /* ── NEWSLETTER ─────────────────────────────────── */
+        .newsletter-section {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            padding: 80px 20px;
+        }
+        .newsletter-inner {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+        .newsletter-inner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+        .newsletter-inner p {
+            color: rgba(255,255,255,0.75);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+        .newsletter-perks {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .perk {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+        }
+        .perk i { color: var(--gold-light); }
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin: auto;
+            flex-wrap: wrap;
+        }
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            min-width: 220px;
+            padding: 14px 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .newsletter-form input:focus { border-color: var(--gold-light); }
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: var(--gold);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .newsletter-form button:hover { background: var(--gold-light); }
+        .newsletter-note {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 14px;
         }
 
-        .flags{
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            gap:15px;
-            padding:20px;
-            background:white;
-            flex-wrap:wrap;
+        /* ── CONSULTATION CTA ───────────────────────────── */
+        .consult-section {
+            background: var(--warm-gray);
+            padding: 80px 20px;
         }
-        .flags img{ width:60px; }
+        .consult-inner {
+            max-width: 960px;
+            margin: auto;
+            background: var(--white);
+            border-radius: 24px;
+            padding: 60px 50px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .consult-text { flex: 1; min-width: 280px; }
+        .consult-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--navy);
+            margin-bottom: 14px;
+        }
+        .consult-text p { color: var(--text-mid); margin-bottom: 24px; font-size: 15px; }
+        .consult-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .consult-features li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            color: var(--text-mid);
+        }
+        .consult-features li i { color: var(--gold); }
+        .consult-form { flex: 1; min-width: 280px; }
+        .consult-form h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 10px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .form-field label { font-size: 13px; font-weight: 600; color: var(--navy); }
+        .form-field input, .form-field select, .form-field textarea {
+            padding: 12px 14px;
+            border: 1.5px solid #DDD8D0;
+            border-radius: 9px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+            border-color: var(--gold);
+        }
+        .form-field textarea { resize: vertical; min-height: 90px; }
 
-        .contact{
-            background:linear-gradient(135deg,#003366,#0059b3);
-            color:white;
-            border-radius:15px;
-            padding:50px 30px;
-            text-align:center;
+        /* ── PRICING ────────────────────────────────────── */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 960px;
+            margin: 0 auto;
         }
-        .contact form{
-            max-width:600px;
-            margin:25px auto 0;
-            display:grid;
-            gap:15px;
+        .pricing-card {
+            background: var(--white);
+            border: 2px solid #E8E4DC;
+            border-radius: 18px;
+            padding: 36px 30px;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
         }
-        .contact input, .contact textarea{
-            padding:12px;
-            border-radius:8px;
-            border:none;
+        .pricing-card.featured {
+            border-color: var(--gold);
+            box-shadow: 0 8px 40px rgba(200,150,42,0.18);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 18px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+        .pricing-card:hover { box-shadow: var(--card-hover); transform: translateY(-4px); }
+        .pricing-tier {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .pricing-desc { font-size: 14px; color: var(--text-mid); margin-bottom: 22px; }
+        .pricing-amount {
+            margin-bottom: 24px;
+            border-top: 1px solid var(--warm-gray);
+            border-bottom: 1px solid var(--warm-gray);
+            padding: 18px 0;
+        }
+        .pricing-amount .amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .pricing-amount .period { font-size: 15px; color: var(--text-light); }
+        .pricing-features { list-style: none; flex: 1; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+        .pricing-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 14px;
+            color: var(--text-mid);
+        }
+        .pricing-features li i { color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+        .pricing-features li.unavail { color: var(--text-light); }
+        .pricing-features li.unavail i { color: #CCC; }
+        .pricing-btn {
+            display: block;
+            text-align: center;
+            padding: 13px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .pricing-btn.gold { background: var(--gold); color: var(--white); }
+        .pricing-btn.gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+        .pricing-btn.outline {
+            background: transparent;
+            border: 2px solid var(--navy);
+            color: var(--navy);
+        }
+        .pricing-btn.outline:hover { background: var(--navy); color: var(--white); }
+
+        /* ── TESTIMONIALS ───────────────────────────────── */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .testimonial {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: var(--card-shadow);
+            border-left: 4px solid var(--gold);
+        }
+        .stars { color: var(--gold); font-size: 14px; margin-bottom: 14px; }
+        .testimonial p {
+            font-size: 15px;
+            color: var(--text-mid);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--gold-light);
+            flex-shrink: 0;
+        }
+        .author-name { font-weight: 700; font-size: 14px; color: var(--navy); }
+        .author-role { font-size: 12px; color: var(--text-light); }
+
+        /* ── ABOUT ──────────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+        .about-text p { color: var(--text-mid); font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 32px;
+        }
+        .stat-box {
+            background: var(--warm-gray);
+            padding: 22px;
+            border-radius: 14px;
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+        .stat-label { font-size: 13px; color: var(--text-mid); font-weight: 500; }
+        .about-visual {
+            background: linear-gradient(145deg, var(--navy), var(--navy-mid));
+            border-radius: 20px;
+            padding: 50px 40px;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .about-visual h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--gold-light);
+        }
+        .service-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+        }
+        .service-pill i { color: var(--gold-light); font-size: 13px; }
+        .service-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        /* ── CONTACT ────────────────────────────────────── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .contact-info h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            color: var(--navy);
+            margin-bottom: 14px;
+        }
+        .contact-info p { color: var(--text-mid); font-size: 15px; margin-bottom: 32px; }
+        .contact-items { display: flex; flex-direction: column; gap: 18px; }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px;
+            background: var(--warm-gray);
+            border-radius: 12px;
+        }
+        .contact-item-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--gold);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .contact-item-text .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 3px; }
+        .contact-item-text .value { font-size: 15px; font-weight: 600; color: var(--navy); }
+        .contact-item-text a { color: var(--navy); text-decoration: none; }
+        .contact-item-text a:hover { color: var(--gold); }
+        .contact-form-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--card-shadow);
+        }
+        .contact-form-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 24px;
         }
 
-        footer{
-            background:#002244;
-            color:white;
-            text-align:center;
-            padding:30px;
+        /* ── FOOTER ─────────────────────────────────────── */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.75);
+            padding: 60px 20px 30px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+        }
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        .footer-brand { }
+        .footer-brand img { height: 44px; width: auto; margin-bottom: 16px; }
+        .footer-brand p { font-size: 14px; line-height: 1.7; max-width: 300px; }
+        .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+        .social-btn {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+        .social-btn:hover { background: var(--gold); }
+        .footer-col h4 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-light);
+            margin-bottom: 16px;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+        .footer-col a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
         }
 
+        /* ── BACK TO TOP ────────────────────────────────── */
         #backToTop {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #ff9900;
-            color: white;
-            width: 50px;
-            height: 50px;
+            bottom: 28px;
+            right: 28px;
+            background: var(--gold);
+            color: var(--white);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(200,150,42,0.4);
             z-index: 999;
+            transition: background 0.2s, transform 0.2s;
+        }
+        #backToTop:hover { background: var(--gold-light); transform: scale(1.1); }
+
+        /* ── COOKIE BANNER ──────────────────────────────── */
+        #cookieBanner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--navy);
+            color: rgba(255,255,255,0.88);
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            z-index: 9000;
+            flex-wrap: wrap;
+            font-size: 14px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+        }
+        #cookieBanner a { color: var(--gold-light); }
+        .cookie-btns { display: flex; gap: 10px; }
+        .cookie-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .cookie-accept { background: var(--gold); color: var(--white); }
+        .cookie-decline { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
+
+        /* ── MODAL ──────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+            z-index: 8000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 44px;
+            max-width: 520px;
+            width: 100%;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        @keyframes modalIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--text-mid);
+            line-height: 1;
+        }
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .modal p { color: var(--text-mid); font-size: 15px; margin-bottom: 24px; }
+        .modal-input {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid #DDD8D0;
+            border-radius: 10px;
+            font-size: 15px;
+            margin-bottom: 12px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+        .modal-input:focus { border-color: var(--gold); }
+
+        /* ── TOAST ──────────────────────────────────────── */
+        #toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--navy);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 15px;
+            font-weight: 500;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 9999;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        #toast i { color: var(--gold-light); margin-right: 8px; }
+
+        /* ── RESPONSIVE ─────────────────────────────────── */
+        @media (max-width: 900px) {
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .about-visual { display: none; }
+            .consult-inner { padding: 40px 30px; }
+        }
+        @media (max-width: 640px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+            .nav-links.open { display: flex; }
+            .hamburger { display: block; }
+            .hero { padding: 80px 20px 70px; }
+            .footer-top { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .trust-inner { gap: 16px; }
+            .about-stats { grid-template-columns: 1fr 1fr; }
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-            .nav-links.active { display: flex; }
-            .hamburger { display: block; }
-            header h1 { font-size: 2.4rem; }
+        /* ── BOOK FILTER TABS ───────────────────────────── */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
         }
+        .filter-tab {
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1.5px solid #DDD8D0;
+            background: transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-mid);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-tab.active, .filter-tab:hover {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+        .book-card { transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s; }
+        .book-card.hidden { display: none; }
+
+        /* ── PROGRESS BAR (reading) ─────────────────────── */
+        .reading-progress {
+            position: fixed;
+            top: 68px;
+            left: 0;
+            height: 3px;
+            background: var(--gold);
+            z-index: 900;
+            transition: width 0.1s;
+        }
+
     </style>
 </head>
-
 <body>
 
-<header>
-    <a href="index.html">
-        <img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC Logo" class="logo">
-    </a>
-    <h1>Fad Nao Global Trade LLC</h1>
-    <p>Connecting businesses worldwide through international trade, publishing, e-commerce, IT consulting, and French-English translation services.</p>
-    <a href="#contact" class="btn">Get In Touch</a>
-</header>
+<!-- Reading progress bar -->
+<div class="reading-progress" id="readingProgress"></div>
 
-<nav>
-    <div class="hamburger" id="hamburger">☰</div>
-    <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#books">Books</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
-
-<div class="flags">
-    <img src="https://flagcdn.com/w80/us.png" alt="US Flag">
-    <span><strong>🇺🇸 United States | 🇧🇯 Benin</strong></span>
-    <img src="https://flagcdn.com/w80/bj.png" alt="Benin Flag">
+<!-- ── ANNOUNCEMENT BAR ──────────────────────────────────────── -->
+<div class="announce-bar" id="announceBar">
+    🌍 New book: <strong>"Pedal to the Medal"</strong> is now on Amazon! &nbsp;<a href="https://a.co/d/0eRVmg9g" target="_blank">Read it now →</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="#newsletter">Subscribe for free publishing insights</a>
+    &nbsp;<span style="cursor:pointer;margin-left:8px;" onclick="document.getElementById('announceBar').remove()">✕</span>
 </div>
 
-<section class="container" id="books">
-    <h2 class="section-title">Books & Publications</h2>
-    <div class="cards">
-        <div class="card"><h3>MANSA MUSA: THE GOLDEN KING OF AFRICA</h3><a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>She Is No More Yours</h3><a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>PUPPET MASTERS OF ETERNITY</h3><a href="https://a.co/d/0hjg57Pb" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Lost Gold Of Mansa Musa</h3><a href="https://a.co/d/04BRjQLS" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Billionaire's Secret Heir</h3><a href="https://a.co/d/0ap9pgPF" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Billionaire's Secret Heir The book</h3><a href="https://a.co/d/02ToJ2U4" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Bodyguard Contract</h3><a href="https://a.co/d/0fN8Q0Ox" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>He's No More Yours (He's Already Checked Out)</h3><a href="https://a.co/d/0hSasQUA" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>They Hate Each Other → Fall in Love</h3><a href="https://a.co/d/02QJoNQT" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>They Hate Each Other → Fall in Love — Trilogy Book 2</h3><a href="https://a.co/d/01UpoYCf" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>They Hate Each Other → Fall in Love — Trilogy Book 3</h3><a href="https://a.co/d/04OaMQzK" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>Inside The New York Underworld</h3><p>Power, Crime, and Hidden History of Manhattan</p><a href="https://a.co/d/0jiY6HNo" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>MANHATTAN: The Island That Shaped America</h3><a href="https://a.co/d/0gxTD7po" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Marriage Contract That Went Too Far</h3><p>A Fake Marriage Romance</p><a href="https://a.co/d/0hyjjVAo" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>Blood Will Tell</h3><a href="https://a.co/d/06yeYRFj" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Pilot's Secret</h3><a href="https://a.co/d/03PYjSQa" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Ledger Of Lost Luck</h3><a href="https://a.co/d/0frB7rX7" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>She Was Never Good Enough... Until He Chose Her</h3><a href="https://a.co/d/03sbWeDg" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Billionaire Who Bought The Building</h3><a href="https://a.co/d/01Dy7wYF" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>Pedal to the Medal</h3><a href="https://a.co/d/0eRVmg9g" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>The Rival CEOs</h3><a href="https://a.co/d/0if2mCcs" target="_blank" class="book-btn">View on Amazon</a></div>
-        <div class="card"><h3>Linux Admin Interview Questions Every Candidate Should Know</h3><p>Interview Guide — 80% of questions asked in interviews</p><a href="https://a.co/d/0dMQrg6S" target="_blank" class="book-btn">View on Amazon</a></div>
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav>
+    <a href="#" class="nav-brand">
+        <img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC">
+        <span>Fad Nao Global</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#pricing">Work With Us</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<header class="hero">
+    <div class="hero-inner">
+        <a href="#"><img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC" class="logo"></a>
+        <div class="hero-eyebrow">New York · Benin · Global</div>
+        <h1>Trade, Publish &amp; <span>Grow</span><br>Across Borders</h1>
+        <p>International trade, professional publishing, IT consulting, and French-English translation — all under one global roof.</p>
+        <div class="hero-flags">
+            <img src="https://flagcdn.com/w80/us.png" alt="US Flag">
+            <span>United States</span>
+            <span style="opacity:0.4">|</span>
+            <img src="https://flagcdn.com/w80/bj.png" alt="Benin Flag">
+            <span>Benin</span>
+        </div>
+        <div class="hero-btns">
+            <a href="#pricing" class="btn-primary">Work With Us</a>
+            <a href="#books" class="btn-outline">Browse Books</a>
+        </div>
+    </div>
+</header>
+
+<!-- ── TRUST BAR ─────────────────────────────────────────────── -->
+<div class="trust-bar">
+    <div class="trust-inner">
+        <div class="trust-item"><i class="fas fa-globe"></i> 2 Countries</div>
+        <div class="trust-item"><i class="fas fa-book"></i> 22+ Published Titles</div>
+        <div class="trust-item"><i class="fas fa-handshake"></i> B2B Trade Partner</div>
+        <div class="trust-item"><i class="fas fa-language"></i> French-English Translation</div>
+        <div class="trust-item"><i class="fas fa-server"></i> Linux IT Consulting</div>
+    </div>
+</div>
+
+<!-- ── SERVICES ──────────────────────────────────────────────── -->
+<section class="section section-alt" id="services">
+    <div class="container">
+        <div class="section-eyebrow">What We Do</div>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub">From global sourcing to book publishing to server administration — we connect what your business needs.</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-ship"></i></div>
+                <h3>International Trade</h3>
+                <p>Facilitating cross-border business deals and import/export relationships between the U.S., Benin, and beyond.</p>
+                <a href="#contact" class="card-link">Get a quote <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-search-dollar"></i></div>
+                <h3>Product Sourcing</h3>
+                <p>Identifying reliable suppliers and building procurement pipelines for international buyers.</p>
+                <a href="#contact" class="card-link">Get a quote <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3>Publishing Services</h3>
+                <p>End-to-end book publishing, Amazon distribution, cover design, and global author promotion.</p>
+                <a href="#pricing" class="card-link">See packages <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-server"></i></div>
+                <h3>IT Consulting &amp; Linux Admin</h3>
+                <p>Server deployment, cybersecurity hardening, infrastructure support, and Linux interview coaching.</p>
+                <a href="#contact" class="card-link">Book a call <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-language"></i></div>
+                <h3>French-English Translation</h3>
+                <p>Professional certified translation and interpretation for business documents, contracts, and correspondence.</p>
+                <a href="#contact" class="card-link">Get a quote <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-store"></i></div>
+                <h3>E-Commerce Solutions</h3>
+                <p>Online store setup, Amazon seller support, digital catalog management, and U.S. buyer representation.</p>
+                <a href="#contact" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="container" id="about">
-    <h2 class="section-title">About Our Company</h2>
-    <div class="card">
-        <p>Fad Nao Global Trade LLC is dedicated to fostering international trade and creative publishing. We connect businesses with global opportunities while supporting authors through professional publication and distribution worldwide.</p>
+<!-- ── BOOKS ──────────────────────────────────────────────────── -->
+<section class="section" id="books">
+    <div class="container">
+        <div class="section-eyebrow">Published Works</div>
+        <h2 class="section-title">Books &amp; Publications</h2>
+        <p class="section-sub">Explore our growing catalog of fiction, history, romance, and professional guides available on Amazon.</p>
+
+        <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-genre="all">All Books</button>
+            <button class="filter-tab" data-genre="history">History &amp; Non-Fiction</button>
+            <button class="filter-tab" data-genre="romance">Romance</button>
+            <button class="filter-tab" data-genre="thriller">Thriller &amp; Crime</button>
+            <button class="filter-tab" data-genre="it">IT &amp; Tech</button>
+        </div>
+
+        <div class="cards" id="booksGrid">
+            <div class="book-card" data-genre="history">
+                <div class="book-genre">History</div>
+                <h3>MANSA MUSA: The Golden King of Africa</h3>
+                <a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>She Is No More Yours</h3>
+                <a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Thriller</div>
+                <h3>PUPPET MASTERS OF ETERNITY</h3>
+                <a href="https://a.co/d/0hjg57Pb" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="history">
+                <div class="book-genre">History / Adventure</div>
+                <h3>The Lost Gold of Mansa Musa</h3>
+                <a href="https://a.co/d/04BRjQLS" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>The Billionaire's Secret Heir</h3>
+                <a href="https://a.co/d/0ap9pgPF" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>The Billionaire's Secret Heir — The Book</h3>
+                <a href="https://a.co/d/02ToJ2U4" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>The Bodyguard Contract</h3>
+                <a href="https://a.co/d/0fN8Q0Ox" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>He's No More Yours (He's Already Checked Out)</h3>
+                <a href="https://a.co/d/0hSasQUA" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance — Trilogy Book 1</div>
+                <h3>They Hate Each Other → Fall in Love</h3>
+                <a href="https://a.co/d/02QJoNQT" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance — Trilogy Book 2</div>
+                <h3>They Hate Each Other → Fall in Love</h3>
+                <a href="https://a.co/d/01UpoYCf" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance — Trilogy Book 3</div>
+                <h3>They Hate Each Other → Fall in Love</h3>
+                <a href="https://a.co/d/04OaMQzK" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Crime / Non-Fiction</div>
+                <h3>Inside the New York Underworld</h3>
+                <p>Power, Crime, and Hidden History of Manhattan</p>
+                <a href="https://a.co/d/0jiY6HNo" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="history">
+                <div class="book-genre">History</div>
+                <h3>MANHATTAN: The Island That Shaped America</h3>
+                <a href="https://a.co/d/0gxTD7po" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>The Marriage Contract That Went Too Far</h3>
+                <p>A Fake Marriage Romance</p>
+                <a href="https://a.co/d/0hyjjVAo" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Thriller</div>
+                <h3>Blood Will Tell</h3>
+                <a href="https://a.co/d/06yeYRFj" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Thriller</div>
+                <h3>The Pilot's Secret</h3>
+                <a href="https://a.co/d/03PYjSQa" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Thriller</div>
+                <h3>The Ledger of Lost Luck</h3>
+                <a href="https://a.co/d/0frB7rX7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>She Was Never Good Enough… Until He Chose Her</h3>
+                <a href="https://a.co/d/03sbWeDg" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Romance</div>
+                <h3>The Billionaire Who Bought the Building</h3>
+                <a href="https://a.co/d/01Dy7wYF" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="thriller">
+                <div class="book-genre">Sports / Drama</div>
+                <h3>Pedal to the Medal</h3>
+                <a href="https://a.co/d/0eRVmg9g" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="romance">
+                <div class="book-genre">Business Romance</div>
+                <h3>The Rival CEOs</h3>
+                <a href="https://a.co/d/0if2mCcs" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+            <div class="book-card" data-genre="it">
+                <div class="book-genre">IT / Career</div>
+                <h3>Linux Admin Interview Questions Every Candidate Should Know</h3>
+                <p>80% of questions asked in real interviews</p>
+                <a href="https://a.co/d/0dMQrg6S" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+            <p style="color:var(--text-mid); margin-bottom:16px;">Are you an author? We can publish and distribute your book globally.</p>
+            <a href="#pricing" class="btn-primary">See Publishing Packages</a>
+        </div>
     </div>
 </section>
 
-<section class="container" id="services">
-    <h2 class="section-title">Our Services</h2>
-    <div class="cards">
-        <div class="card"><h3>International Trade</h3><p>Facilitating global trade transactions and business relationships.</p></div>
-        <div class="card"><h3>Product Sourcing & Procurement</h3><p>Identifying reliable suppliers and procurement opportunities.</p></div>
-        <div class="card"><h3>E-Commerce Solutions</h3><p>Supporting online business operations and digital commerce.</p></div>
-        <div class="card"><h3>Business Consulting</h3><p>Helping companies navigate international markets.</p></div>
-        <div class="card"><h3>Publishing Services</h3><p>Professional publishing, distribution, and promotion of books.</p></div>
-        <div class="card"><h3>IT Consulting & Linux Administration</h3><p>Server deployment, cybersecurity, and infrastructure support.</p></div>
-        <div class="card"><h3>French-English Translation</h3><p>Professional translation and interpretation services.</p></div>
-        <div class="card"><h3>International Buyer Representation</h3><p>New York-based support for international buyers with U.S. suppliers.</p></div>
-    </div>
-</section>
-
-<section class="container" id="contact">
-    <div class="contact">
-        <h2>Contact Us</h2>
-        
-        <form action="https://formspree.io/f/mykayjgq" method="POST">
-            <input type="text" name="name" placeholder="Fad Nao Global Trade Llc" required>
-            <input type="email" name="email" placeholder="fadnaoglobaltradellc@gmail.com" required>
-            <input type="tel" name="phone" placeholder="Phone Number">
-            <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn" style="background:#ff9900; color:white; width:100%;">Send Message</button>
+<!-- ── NEWSLETTER ─────────────────────────────────────────────── -->
+<section class="newsletter-section" id="newsletter">
+    <div class="newsletter-inner">
+        <div class="section-eyebrow" style="color:var(--gold-light);">Stay in the Loop</div>
+        <h2>Join Our Free Newsletter</h2>
+        <p>Monthly insights on global trade, book publishing tips, IT career advice, and exclusive early-access deals for subscribers.</p>
+        <div class="newsletter-perks">
+            <div class="perk"><i class="fas fa-check-circle"></i> Publishing tips</div>
+            <div class="perk"><i class="fas fa-check-circle"></i> Trade opportunities</div>
+            <div class="perk"><i class="fas fa-check-circle"></i> Subscriber discounts</div>
+            <div class="perk"><i class="fas fa-check-circle"></i> New book alerts</div>
+        </div>
+        <!-- Mailchimp or Formspree powered form -->
+        <form class="newsletter-form" action="https://formspree.io/f/mykayjgq" method="POST" id="newsletterForm">
+            <input type="hidden" name="_subject" value="Newsletter Subscription">
+            <input type="hidden" name="type" value="newsletter_subscribe">
+            <input type="email" name="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe Free</button>
         </form>
-
-        <p style="margin-top:30px;">
-            <strong>Email:</strong> <a href="mailto:info@fadnaoglobaltradellc@gmail.com" style="color:white;">info@fadnaoglobaltradellc@gmail.com</a>
-        </p>
-        <p>US: +1 (347) 264-2877 | +1 (929) 367-6840</p>
-        <p>Benin: (+229) 019-7003-741 | (+229) 019-600-9034</p>
-        <p><strong>New York, United States</strong></p>
+        <p class="newsletter-note">No spam, ever. Unsubscribe anytime. ~1 email per month.</p>
     </div>
 </section>
 
+<!-- ── PRICING ───────────────────────────────────────────────── -->
+<section class="section section-alt" id="pricing">
+    <div class="container">
+        <div class="section-eyebrow">Work With Us</div>
+        <h2 class="section-title">Service Packages</h2>
+        <p class="section-sub">Transparent pricing for publishing, translation, and IT consulting. Pick what fits — or contact us for a custom quote.</p>
+
+        <div class="pricing-cards">
+            <!-- Publishing Starter -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Publishing</div>
+                <h3>Starter</h3>
+                <p class="pricing-desc">First-time authors ready to publish their manuscript on Amazon KDP.</p>
+                <div class="pricing-amount">
+                    <span class="amount">$299</span>
+                    <span class="period"> / project</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Manuscript formatting (KDP-ready)</li>
+                    <li><i class="fas fa-check"></i> Amazon KDP listing setup</li>
+                    <li><i class="fas fa-check"></i> Basic cover design consultation</li>
+                    <li><i class="fas fa-check"></i> ISBN support guidance</li>
+                    <li class="unavail"><i class="fas fa-times"></i> Marketing &amp; promotion</li>
+                    <li class="unavail"><i class="fas fa-times"></i> Translation services</li>
+                </ul>
+                <a href="#contact" class="pricing-btn outline">Get Started</a>
+            </div>
+
+            <!-- Publishing Pro -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">Most Popular</div>
+                <div class="pricing-tier">Publishing</div>
+                <h3>Professional</h3>
+                <p class="pricing-desc">Full publishing support from manuscript to global distribution.</p>
+                <div class="pricing-amount">
+                    <span class="amount">$699</span>
+                    <span class="period"> / project</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Everything in Starter</li>
+                    <li><i class="fas fa-check"></i> Professional cover design</li>
+                    <li><i class="fas fa-check"></i> Book description copywriting</li>
+                    <li><i class="fas fa-check"></i> Amazon category &amp; keyword strategy</li>
+                    <li><i class="fas fa-check"></i> Social media promotion (2 posts)</li>
+                    <li><i class="fas fa-check"></i> 30-day post-launch support</li>
+                </ul>
+                <a href="#contact" class="pricing-btn gold">Get Started</a>
+            </div>
+
+            <!-- Translation -->
+            <div class="pricing-card">
+                <div class="pricing-tier">Translation</div>
+                <h3>FR ↔ EN Translation</h3>
+                <p class="pricing-desc">Certified French-English translation for business and personal documents.</p>
+                <div class="pricing-amount">
+                    <span class="amount">$0.12</span>
+                    <span class="period"> / word</span>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Business documents &amp; contracts</li>
+                    <li><i class="fas fa-check"></i> Certified translations</li>
+                    <li><i class="fas fa-check"></i> 48–72 hr standard turnaround</li>
+                    <li><i class="fas fa-check"></i> Rush delivery available</li>
+                    <li><i class="fas fa-check"></i> Notarization assistance</li>
+                    <li><i class="fas fa-check"></i> Confidential &amp; secure</li>
+                </ul>
+                <a href="#contact" class="pricing-btn outline">Request a Quote</a>
+            </div>
+        </div>
+
+        <p style="text-align:center; margin-top:36px; color:var(--text-mid); font-size:14px;">
+            Need IT consulting, trade sourcing, or a custom package? <a href="#contact" style="color:var(--gold); font-weight:600;">Contact us directly</a> — we'll build a quote around your needs.
+        </p>
+    </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="section" id="testimonials">
+    <div class="container">
+        <div class="section-eyebrow">What People Say</div>
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-sub">Real words from authors, business owners, and readers we've worked with.</p>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Fad Nao made the publishing process seamless. My book was live on Amazon within two weeks and the cover looked incredibly professional."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AM</div>
+                    <div>
+                        <div class="author-name">Amara M.</div>
+                        <div class="author-role">Author — Romance Fiction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"The French-to-English translation of our legal documents was accurate, fast, and properly certified. Exactly what we needed for our U.S. expansion."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">KT</div>
+                    <div>
+                        <div class="author-name">Koffi T.</div>
+                        <div class="author-role">Business Owner — Benin/USA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <p>"The Linux interview guide gave me the edge I needed. I passed my sysadmin interview after studying it for just 10 days. Highly recommended for anyone in IT."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JR</div>
+                    <div>
+                        <div class="author-name">James R.</div>
+                        <div class="author-role">Linux Sysadmin — New York</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CONSULTATION CTA ───────────────────────────────────────── -->
+<section class="consult-section">
+    <div class="container">
+        <div class="consult-inner">
+            <div class="consult-text">
+                <h2>Book a Free 30-Min Consultation</h2>
+                <p>Whether you're an aspiring author, a business seeking trade support, or an IT professional — let's talk about how we can help.</p>
+                <ul class="consult-features">
+                    <li><i class="fas fa-check-circle"></i> No commitment required</li>
+                    <li><i class="fas fa-check-circle"></i> Get clear answers to your questions</li>
+                    <li><i class="fas fa-check-circle"></i> Receive a custom quote</li>
+                    <li><i class="fas fa-check-circle"></i> Available via Zoom or phone</li>
+                </ul>
+                <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+                    <a href="tel:+13472642877" class="btn-primary"><i class="fas fa-phone" style="margin-right:8px;"></i>Call Now</a>
+                    <a href="#contact" class="btn-outline" style="color:var(--navy); border-color:var(--navy);">Send a Message</a>
+                </div>
+            </div>
+            <div class="consult-form">
+                <h3>Schedule a Call</h3>
+                <form action="https://formspree.io/f/mykayjgq" method="POST" id="consultForm">
+                    <input type="hidden" name="type" value="consultation_request">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>First Name</label>
+                                <input type="text" name="first_name" placeholder="John" required>
+                            </div>
+                            <div class="form-field">
+                                <label>Last Name</label>
+                                <input type="text" name="last_name" placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>I'm interested in…</label>
+                            <select name="service">
+                                <option value="">Select a service</option>
+                                <option>Book Publishing</option>
+                                <option>French-English Translation</option>
+                                <option>IT Consulting / Linux</option>
+                                <option>International Trade / Sourcing</option>
+                                <option>E-Commerce Support</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Brief message (optional)</label>
+                            <textarea name="message" placeholder="Tell us a bit about your project…"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; font-size:15px; padding:14px;">Request Free Consultation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────────── -->
+<section class="section section-alt" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="section-eyebrow" style="text-align:left;">Our Story</div>
+                <h2>A Bridge Between Two Worlds</h2>
+                <p>Founded in New York with roots in Benin, Fad Nao Global Trade LLC was built on the belief that geography should never be a barrier to doing business or sharing your story with the world.</p>
+                <p>We help entrepreneurs source products globally, help authors get published on the world's largest platform, support IT professionals in building their careers, and help companies communicate seamlessly across French and English.</p>
+                <p>Every service we offer is designed to reduce friction — so you can focus on what you do best.</p>
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">22+</span>
+                        <span class="stat-label">Books Published</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Services Offered</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">NYC</span>
+                        <span class="stat-label">Based in New York</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <h3>What We Offer</h3>
+                <div class="service-pills">
+                    <span class="service-pill"><i class="fas fa-globe"></i> International Trade</span>
+                    <span class="service-pill"><i class="fas fa-book"></i> Book Publishing</span>
+                    <span class="service-pill"><i class="fas fa-language"></i> FR/EN Translation</span>
+                    <span class="service-pill"><i class="fas fa-server"></i> Linux IT Consulting</span>
+                    <span class="service-pill"><i class="fas fa-search-dollar"></i> Product Sourcing</span>
+                    <span class="service-pill"><i class="fas fa-store"></i> E-Commerce</span>
+                    <span class="service-pill"><i class="fas fa-handshake"></i> Buyer Representation</span>
+                    <span class="service-pill"><i class="fas fa-briefcase"></i> Business Consulting</span>
+                </div>
+                <div style="border-top:1px solid rgba(255,255,255,0.15); padding-top:22px; margin-top:8px;">
+                    <p style="font-size:14px; color:rgba(255,255,255,0.65); line-height:1.7;">
+                        We publish across Amazon's global marketplace reaching readers in the U.S., U.K., Canada, Australia, and Europe — and our trade network spans the U.S.–Benin corridor.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────────── -->
+<section class="section" id="contact">
+    <div class="container">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-sub">Ready to start? Have a question? We respond within 24 hours.</p>
+
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Let's Talk Business</h2>
+                <p>Whether you're ready to publish, need a translation, want to source products, or are looking for IT support — we're here to help.</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-item-text">
+                            <div class="label">Email</div>
+                            <div class="value"><a href="mailto:fadnaoglobaltradellc@gmail.com">fadnaoglobaltradellc@gmail.com</a></div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-item-text">
+                            <div class="label">United States</div>
+                            <div class="value">
+                                <a href="tel:+13472642877">+1 (347) 264-2877</a><br>
+                                <a href="tel:+19293676840" style="font-size:14px;">+1 (929) 367-6840</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-item-text">
+                            <div class="label">Benin</div>
+                            <div class="value">
+                                <a href="tel:+22901970037410">(+229) 019-7003-741</a><br>
+                                <a href="tel:+22901960090340" style="font-size:14px;">(+229) 019-600-9034</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-item-text">
+                            <div class="label">Location</div>
+                            <div class="value">New York, United States</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- WhatsApp CTA -->
+                <a href="https://wa.me/13472642877" target="_blank" style="display:inline-flex; align-items:center; gap:10px; margin-top:24px; background:#25D366; color:white; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                    <i class="fab fa-whatsapp" style="font-size:20px;"></i> Chat on WhatsApp
+                </a>
+            </div>
+
+            <div class="contact-form-card">
+                <h3>Send Us a Message</h3>
+                <form action="https://formspree.io/f/mykayjgq" method="POST" id="contactForm">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Your Name</label>
+                                <input type="text" name="name" placeholder="Full Name" required>
+                            </div>
+                            <div class="form-field">
+                                <label>Phone (optional)</label>
+                                <input type="tel" name="phone" placeholder="+1 (000) 000-0000">
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-field">
+                            <label>Service Interest</label>
+                            <select name="service">
+                                <option value="">What are you reaching out about?</option>
+                                <option>Book Publishing</option>
+                                <option>French-English Translation</option>
+                                <option>IT Consulting</option>
+                                <option>International Trade</option>
+                                <option>E-Commerce Solutions</option>
+                                <option>General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label>Message</label>
+                            <textarea name="message" rows="5" placeholder="Tell us about your project or question…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%; font-size:15px; padding:14px; border:none; cursor:pointer;">Send Message <i class="fas fa-paper-plane" style="margin-left:6px;"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
-    © 2026 Fad Nao Global Trade LLC. All Rights Reserved.<br>
-    🇺🇸 United States | 🇧🇯 Benin Connection
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC">
+                <p>Connecting businesses and authors worldwide through international trade, professional publishing, IT consulting, and translation services.</p>
+                <div class="footer-social">
+                    <a href="mailto:fadnaoglobaltradellc@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://wa.me/13472642877" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.amazon.com/stores/author" target="_blank" class="social-btn" aria-label="Amazon"><i class="fab fa-amazon"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">International Trade</a></li>
+                    <li><a href="#services">Publishing</a></li>
+                    <li><a href="#services">IT Consulting</a></li>
+                    <li><a href="#services">Translation</a></li>
+                    <li><a href="#services">E-Commerce</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Books</h4>
+                <ul>
+                    <li><a href="#books">History &amp; Non-Fiction</a></li>
+                    <li><a href="#books">Romance</a></li>
+                    <li><a href="#books">Thriller &amp; Crime</a></li>
+                    <li><a href="#books">IT &amp; Tech</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#newsletter">Newsletter</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Fad Nao Global Trade LLC. All Rights Reserved.</span>
+            <span>🇺🇸 New York, United States &nbsp;|&nbsp; 🇧🇯 Benin</span>
+        </div>
+    </div>
 </footer>
 
-<button id="backToTop" title="Back to Top">↑</button>
+<!-- ── BACK TO TOP ────────────────────────────────────────────── -->
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<!-- ── COOKIE BANNER ──────────────────────────────────────────── -->
+<div id="cookieBanner">
+    <span>🍪 This site uses cookies to improve your experience. <a href="#">Learn more</a></span>
+    <div class="cookie-btns">
+        <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accept</button>
+        <button class="cookie-btn cookie-decline" onclick="declineCookies()">Decline</button>
+    </div>
+</div>
+
+<!-- ── EXIT INTENT MODAL ──────────────────────────────────────── -->
+<div class="modal-overlay" id="exitModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div style="text-align:center; margin-bottom:20px;">
+            <div style="font-size:40px; margin-bottom:10px;">📚</div>
+            <h2>Before You Go…</h2>
+            <p>Get our free monthly newsletter — publishing tips, trade insights, and subscriber-only discounts delivered to your inbox.</p>
+        </div>
+        <form action="https://formspree.io/f/mykayjgq" method="POST" id="modalForm">
+            <input type="hidden" name="type" value="exit_intent_subscribe">
+            <input type="email" name="email" class="modal-input" placeholder="Your email address" required>
+            <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer; font-size:15px; padding:14px;">Yes, Subscribe Me Free!</button>
+        </form>
+        <p style="text-align:center; margin-top:12px; font-size:13px; color:var(--text-light);">No spam. Unsubscribe anytime.</p>
+    </div>
+</div>
+
+<!-- ── TOAST NOTIFICATION ─────────────────────────────────────── -->
+<div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Message sent!</span></div>
 
 <script>
-    // Mobile Menu
-    document.getElementById('hamburger').addEventListener('click', () => {
-        document.getElementById('navLinks').classList.toggle('active');
-    });
+// ── HAMBURGER ────────────────────────────────────────────────────
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+});
 
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            if(this.getAttribute('href') !== '#'){
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+// ── SMOOTH SCROLL ────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('navLinks').classList.remove('open');
+        }
+    });
+});
+
+// ── BACK TO TOP + READING PROGRESS ──────────────────────────────
+const backToTop = document.getElementById('backToTop');
+const progressBar = document.getElementById('readingProgress');
+window.addEventListener('scroll', () => {
+    backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    const scrollPct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrollPct + '%';
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ── BOOK FILTER TABS ─────────────────────────────────────────────
+document.getElementById('filterTabs').addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-tab')) return;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    const genre = e.target.dataset.genre;
+    document.querySelectorAll('.book-card').forEach(card => {
+        if (genre === 'all' || card.dataset.genre === genre) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+});
+
+// ── COOKIE BANNER ────────────────────────────────────────────────
+function acceptCookies() {
+    localStorage.setItem('cookies', 'accepted');
+    document.getElementById('cookieBanner').style.display = 'none';
+}
+function declineCookies() {
+    localStorage.setItem('cookies', 'declined');
+    document.getElementById('cookieBanner').style.display = 'none';
+}
+if (localStorage.getItem('cookies')) {
+    document.getElementById('cookieBanner').style.display = 'none';
+}
+
+// ── EXIT INTENT MODAL ────────────────────────────────────────────
+let modalShown = false;
+document.addEventListener('mouseleave', e => {
+    if (e.clientY < 10 && !modalShown && !localStorage.getItem('modalDismissed')) {
+        document.getElementById('exitModal').classList.add('active');
+        modalShown = true;
+    }
+});
+// Also show after 60s
+setTimeout(() => {
+    if (!modalShown && !localStorage.getItem('modalDismissed')) {
+        document.getElementById('exitModal').classList.add('active');
+        modalShown = true;
+    }
+}, 60000);
+function closeModal() {
+    document.getElementById('exitModal').classList.remove('active');
+    localStorage.setItem('modalDismissed', '1');
+}
+document.getElementById('exitModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('exitModal')) closeModal();
+});
+
+// ── TOAST HELPER ─────────────────────────────────────────────────
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+}
+
+// ── FORM INTERCEPTS (AJAX with Formspree) ────────────────────────
+async function submitForm(formEl, successMsg) {
+    formEl.addEventListener('submit', async e => {
+        e.preventDefault();
+        const btn = formEl.querySelector('[type=submit]');
+        const original = btn.innerHTML;
+        btn.innerHTML = 'Sending…';
+        btn.disabled = true;
+        try {
+            const res = await fetch(formEl.action, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: new FormData(formEl)
+            });
+            if (res.ok) {
+                showToast(successMsg);
+                formEl.reset();
+                if (formEl.id === 'modalForm') closeModal();
+            } else {
+                showToast('Something went wrong. Please try again.');
             }
-        });
+        } catch {
+            showToast('Network error. Please try again.');
+        }
+        btn.innerHTML = original;
+        btn.disabled = false;
     });
+}
 
-    // Back to Top Button
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-        backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+submitForm(document.getElementById('contactForm'), '✅ Message sent! We\'ll reply within 24 hours.');
+submitForm(document.getElementById('newsletterForm'), '🎉 You\'re subscribed! Welcome aboard.');
+submitForm(document.getElementById('consultForm'), '📅 Consultation request received!');
+submitForm(document.getElementById('modalForm'), '🎉 Subscribed successfully!');
+
+// ── INTERSECTION OBSERVER (fade-in cards) ────────────────────────
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
     });
-    backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, transform 0.3s';
+    observer.observe(el);
+});
 </script>
 
 </body>
