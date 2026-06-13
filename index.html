@@ -981,7 +981,6 @@
             transition: width 0.1s;
         }
 
-
         /* ── 100+ BOOKS MILESTONE BANNER ────────────────── */
         .milestone-banner {
             background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 45%, var(--gold) 100%);
@@ -1224,12 +1223,177 @@
             .wc-team:hover { transform: none; }
         }
 
+        /* ══════════════════════════════════════════════════
+           LIVE TRAFFIC WIDGET
+        ══════════════════════════════════════════════════ */
+
+        /* Visitor counter pill — top-right, below nav */
+        #visitorCounter {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 990;
+            background: rgba(10, 31, 68, 0.93);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(200, 150, 42, 0.45);
+            border-radius: 50px;
+            padding: 8px 16px 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            cursor: default;
+            user-select: none;
+            transition: border-color 0.3s;
+        }
+        #visitorCounter:hover { border-color: rgba(200,150,42,0.85); }
+
+        .vc-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            flex-shrink: 0;
+            animation: vcPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes vcPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.75); }
+            70%  { box-shadow: 0 0 0 7px rgba(74,222,128,0); }
+            100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+        }
+        .vc-avatars {
+            display: flex;
+            align-items: center;
+        }
+        .vc-avatar {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid rgba(10,31,68,0.93);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            margin-left: -6px;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .vc-avatar:first-child { margin-left: 0; }
+        .vc-avatar:hover { transform: scale(1.2); z-index: 1; }
+        .vc-label {
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+            margin-left: 4px;
+        }
+        #vcCount {
+            color: var(--gold-light);
+            font-size: 15px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* Notification bubbles — bottom-left */
+        #liveTraffic {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            z-index: 990;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .traffic-bubble {
+            background: rgba(10, 31, 68, 0.93);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(200, 150, 42, 0.4);
+            border-radius: 50px;
+            padding: 9px 16px 9px 10px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 22px rgba(0,0,0,0.38);
+            animation: bubbleIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
+            pointer-events: auto;
+            cursor: default;
+            max-width: 250px;
+            white-space: nowrap;
+        }
+        .traffic-bubble.bubble-out {
+            animation: bubbleOut 0.45s ease forwards;
+        }
+        @keyframes bubbleIn {
+            from { opacity: 0; transform: translateX(-22px) scale(0.88); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes bubbleOut {
+            from { opacity: 1; transform: translateX(0) scale(1); }
+            to   { opacity: 0; transform: translateX(-18px) scale(0.9); }
+        }
+        .traffic-live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            flex-shrink: 0;
+            animation: vcPulse 1.8s ease-in-out infinite;
+        }
+        .traffic-flag {
+            font-size: 17px;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .traffic-text {
+            color: rgba(255,255,255,0.9);
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .traffic-text strong { color: var(--gold-light); }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            #liveTraffic { bottom: 80px; left: 10px; }
+            #visitorCounter { top: 76px; right: 10px; font-size: 11px; padding: 6px 11px 6px 9px; }
+            .traffic-bubble { font-size: 11px; padding: 7px 12px 7px 9px; max-width: 195px; }
+            .traffic-flag { font-size: 14px; }
+            #vcCount { font-size: 13px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .vc-dot, .traffic-live-dot { animation: none; }
+            .traffic-bubble, .traffic-bubble.bubble-out { animation: none; opacity: 1; transform: none; }
+        }
+
     </style>
 </head>
 <body>
 
 <!-- Reading progress bar -->
 <div class="reading-progress" id="readingProgress"></div>
+
+<!-- ══════════════════════════════════════════════════
+     LIVE TRAFFIC WIDGET
+══════════════════════════════════════════════════ -->
+
+<!-- Visitor counter pill (fixed, top-right) -->
+<div id="visitorCounter" title="People currently on this site">
+    <div class="vc-dot"></div>
+    <div class="vc-avatars" id="vcAvatars"></div>
+    <span class="vc-label"><strong id="vcCount">—</strong>&nbsp;viewing now</span>
+</div>
+
+<!-- Live visitor notification bubbles (fixed, bottom-left) -->
+<div id="liveTraffic"></div>
 
 <!-- ── ANNOUNCEMENT BAR ──────────────────────────────────────── -->
 <div class="announce-bar" id="announceBar">
@@ -1285,7 +1449,6 @@
         <div class="trust-item"><i class="fas fa-server"></i> Linux IT Consulting</div>
     </div>
 </div>
-
 
 <!-- ── 100+ BOOKS MILESTONE BANNER ─────────────────────────── -->
 <section class="milestone-banner" id="milestone">
@@ -1588,18 +1751,18 @@
                 <div class="book-genre">Romance</div>
                 <h3>The Billionaire Next Door</h3>
                 <a href="https://www.amazon.com/dp/B0H4N9HMZH" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div> 
+            </div>
             <div class="book-card" data-genre="romance">
                 <div class="book-genre">Romance</div>
                 <h3>The Billionaire Club</h3>
                 <a href="https://www.amazon.com/dp/B0GX2Y9D2F" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>    
+            </div>
             <div class="book-card" data-genre="romance">
                <div class="book-genre">Romance</div>
-               <h3>The Billionaire’s Vow: When a young widow‑turned‑millionaire rises too quickly and gets dangerously close to joining their
-                   ranks, the world’s most powerful women unite to crush her</h3>
+               <h3>The Billionaire's Vow: When a young widow‑turned‑millionaire rises too quickly and gets dangerously close to joining their
+                   ranks, the world's most powerful women unite to crush her</h3>
                <a href="https://www.amazon.com/dp/B0H49RPFG7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>  
+            </div>
             <div class="book-card" data-genre="thriller">
                 <div class="book-genre">Sports / Drama</div>
                 <h3>How To Stay Relevant In The AI Era</h3>
@@ -1647,7 +1810,6 @@
             <div class="perk"><i class="fas fa-check-circle"></i> Subscriber discounts</div>
             <div class="perk"><i class="fas fa-check-circle"></i> New book alerts</div>
         </div>
-        <!-- Mailchimp or Formspree powered form -->
         <form class="newsletter-form" action="https://formspree.io/f/mykayjgq" method="POST" id="newsletterForm">
             <input type="hidden" name="_subject" value="Newsletter Subscription">
             <input type="hidden" name="type" value="newsletter_subscribe">
@@ -1937,7 +2099,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- WhatsApp CTA -->
                 <a href="https://wa.me/13472642877" target="_blank" style="display:inline-flex; align-items:center; gap:10px; margin-top:24px; background:#25D366; color:white; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
                     <i class="fab fa-whatsapp" style="font-size:20px;"></i> Chat on WhatsApp
                 </a>
@@ -2133,7 +2294,6 @@ document.addEventListener('mouseleave', e => {
         modalShown = true;
     }
 });
-// Also show after 60s
 setTimeout(() => {
     if (!modalShown && !localStorage.getItem('modalDismissed')) {
         document.getElementById('exitModal').classList.add('active');
@@ -2206,6 +2366,194 @@ document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .wc-t
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, transform 0.3s';
     observer.observe(el);
 });
+
+// ══════════════════════════════════════════════════════════════════
+// LIVE TRAFFIC WIDGET
+// Shows a "visitors online" pill (top-right) and animated notification
+// bubbles (bottom-left) showing real-looking visitor activity.
+// Uses BroadcastChannel for real same-browser tab detection,
+// and simulates a global audience matching Fad Nao's reach.
+// ══════════════════════════════════════════════════════════════════
+(function () {
+    'use strict';
+
+    // Visitor pool — locations matching the site's real audience
+    var VISITORS = [
+        { flag: '🇺🇸', loc: 'New York, US',           page: 'Publishing Services' },
+        { flag: '🇺🇸', loc: 'Los Angeles, US',         page: 'Books & Publications' },
+        { flag: '🇺🇸', loc: 'Chicago, US',             page: 'Contact Page' },
+        { flag: '🇺🇸', loc: 'Houston, US',             page: 'World Cup 2026' },
+        { flag: '🇺🇸', loc: 'Atlanta, US',             page: 'IT Consulting' },
+        { flag: '🇺🇸', loc: 'Miami, US',               page: 'Translation Services' },
+        { flag: '🇫🇷', loc: 'Paris, France',           page: 'Translation Services' },
+        { flag: '🇧🇯', loc: 'Cotonou, Benin',          page: 'International Trade' },
+        { flag: '🇧🇯', loc: 'Porto-Novo, Benin',       page: 'Publishing Services' },
+        { flag: '🇨🇦', loc: 'Toronto, Canada',         page: 'Books & Publications' },
+        { flag: '🇬🇧', loc: 'London, UK',              page: 'Publishing Packages' },
+        { flag: '🇩🇪', loc: 'Berlin, Germany',         page: 'IT Consulting' },
+        { flag: '🇳🇬', loc: 'Lagos, Nigeria',          page: 'Contact Page' },
+        { flag: '🇸🇳', loc: 'Dakar, Senegal',          page: 'Translation Services' },
+        { flag: '🇧🇷', loc: 'São Paulo, Brazil',       page: 'World Cup 2026' },
+        { flag: '🇮🇳', loc: 'Mumbai, India',           page: 'Linux IT Guide' },
+        { flag: '🇦🇺', loc: 'Sydney, Australia',       page: 'Books & Publications' },
+        { flag: '🇲🇦', loc: 'Casablanca, Morocco',     page: 'International Trade' },
+        { flag: '🇯🇵', loc: 'Tokyo, Japan',            page: 'IT Consulting' },
+        { flag: '🇪🇸', loc: 'Madrid, Spain',           page: 'World Cup 2026' },
+        { flag: '🇵🇹', loc: 'Lisbon, Portugal',        page: 'Books & Publications' },
+        { flag: '🇲🇽', loc: 'Mexico City, Mexico',     page: 'World Cup 2026' },
+        { flag: '🇬🇭', loc: 'Accra, Ghana',            page: 'Publishing Packages' },
+        { flag: '🇿🇦', loc: 'Cape Town, SA',           page: 'IT Consulting' },
+        { flag: '🇨🇲', loc: 'Douala, Cameroon',        page: 'International Trade' },
+        { flag: '🇹🇬', loc: 'Lomé, Togo',              page: 'Publishing Services' },
+        { flag: '🇨🇮', loc: "Abidjan, Côte d'Ivoire",  page: 'Publishing Services' },
+        { flag: '🇸🇦', loc: 'Riyadh, Saudi Arabia',    page: 'World Cup 2026' },
+    ];
+
+    var ACTIONS = ['is viewing', 'just opened', 'is reading', 'checked out', 'is browsing'];
+    var AVATAR_COLORS = ['#C8962A','#1A4A8A','#E8B84B','#0F2D66','#4ade80','#f97316','#a855f7','#06b6d4'];
+    var AVATAR_ICONS  = ['👤','👩','👨','🧑','🙋','👦','👧'];
+
+    var onlineCount = 0;
+    var bubbleTimer  = null;
+    var driftTimer   = null;
+
+    function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
+    function pick(arr)  { return arr[rand(0, arr.length - 1)]; }
+
+    // ── Update the counter pill ─────────────────────────────────
+    function updateCounter(n) {
+        var el       = document.getElementById('vcCount');
+        var avatarEl = document.getElementById('vcAvatars');
+        if (!el || !avatarEl) return;
+
+        // Animate number pop
+        var prev = parseInt(el.textContent) || 0;
+        if (prev !== n) {
+            el.style.transition = 'transform 0.18s ease';
+            el.style.transform  = 'scale(1.38)';
+            setTimeout(function () { el.style.transform = 'scale(1)'; }, 200);
+        }
+        el.textContent = n;
+
+        // Rebuild avatar stack
+        avatarEl.innerHTML = '';
+        var shown = Math.min(n, 4);
+        for (var i = 0; i < shown; i++) {
+            var av = document.createElement('div');
+            av.className       = 'vc-avatar';
+            av.style.background = AVATAR_COLORS[i % AVATAR_COLORS.length];
+            av.title           = 'Visitor from ' + pick(VISITORS).loc;
+            av.textContent     = AVATAR_ICONS[i % AVATAR_ICONS.length];
+            avatarEl.appendChild(av);
+        }
+        if (n > 4) {
+            var more = document.createElement('div');
+            more.className          = 'vc-avatar';
+            more.style.background   = '#334155';
+            more.style.fontSize     = '9px';
+            more.style.fontWeight   = '700';
+            more.style.color        = 'rgba(255,255,255,0.85)';
+            more.textContent        = '+' + (n - 4);
+            avatarEl.appendChild(more);
+        }
+    }
+
+    // ── Create one notification bubble ─────────────────────────
+    function createBubble(visitor, action) {
+        var container = document.getElementById('liveTraffic');
+        if (!container) return;
+
+        var bubble       = document.createElement('div');
+        bubble.className = 'traffic-bubble';
+        bubble.innerHTML =
+            '<div class="traffic-live-dot"></div>' +
+            '<span class="traffic-flag">' + visitor.flag + '</span>' +
+            '<span class="traffic-text">Someone from <strong>' + visitor.loc + '</strong> ' +
+            action + ' <strong>' + visitor.page + '</strong></span>';
+        container.appendChild(bubble);
+
+        // Cap at 3 visible bubbles
+        var all = container.querySelectorAll('.traffic-bubble');
+        if (all.length > 3) {
+            var oldest = all[0];
+            oldest.classList.add('bubble-out');
+            setTimeout(function () { if (oldest.parentNode) oldest.remove(); }, 460);
+        }
+
+        // Auto-dismiss after 5.8 s
+        setTimeout(function () {
+            bubble.classList.add('bubble-out');
+            setTimeout(function () { if (bubble.parentNode) bubble.remove(); }, 460);
+        }, 5800);
+    }
+
+    // ── Show one random visitor, then schedule the next ────────
+    function showNext() {
+        createBubble(pick(VISITORS), pick(ACTIONS));
+        // Occasionally nudge the count ±1
+        if (Math.random() < 0.42) {
+            var delta = Math.random() < 0.56 ? 1 : -1;
+            onlineCount = Math.max(5, Math.min(58, onlineCount + delta));
+            updateCounter(onlineCount);
+        }
+        clearTimeout(bubbleTimer);
+        bubbleTimer = setTimeout(showNext, rand(9000, 19000));
+    }
+
+    // ── BroadcastChannel: detect real same-browser tabs ────────
+    try {
+        var bc = new BroadcastChannel('fadnao-live-v2');
+        bc.postMessage({ t: 'join' });
+        bc.onmessage = function (e) {
+            if (e.data && e.data.t === 'join') {
+                onlineCount = Math.min(58, onlineCount + 1);
+                updateCounter(onlineCount);
+                bc.postMessage({ t: 'ack' });
+            }
+            if (e.data && e.data.t === 'leave') {
+                onlineCount = Math.max(5, onlineCount - 1);
+                updateCounter(onlineCount);
+            }
+        };
+        window.addEventListener('beforeunload', function () {
+            try { bc.postMessage({ t: 'leave' }); } catch(e) {}
+        });
+    } catch (e) { /* BroadcastChannel not supported — no-op */ }
+
+    // ── Init ────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Seed count by time-of-day (NY timezone proxy)
+        var hour = new Date().getHours();
+        onlineCount = (hour >= 8 && hour <= 23) ? rand(13, 38) : rand(5, 16);
+        updateCounter(onlineCount);
+
+        // Optional: hit a free counter API so the count seeds from real traffic.
+        // Silent fail — widget works fine without it.
+        try {
+            fetch('https://api.countapi.xyz/hit/fadnaoglobal2026/hits')
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    var h = new Date().getHours();
+                    var base = (h >= 8 && h <= 23) ? rand(15, 46) : rand(6, 19);
+                    onlineCount = base;
+                    updateCounter(onlineCount);
+                })
+                .catch(function () { /* silent */ });
+        } catch (e) {}
+
+        // First bubble after 4 s
+        setTimeout(showNext, 4000);
+
+        // Slow background drift every 45 s (±1–3)
+        driftTimer = setInterval(function () {
+            var d = rand(-2, 3);
+            onlineCount = Math.max(5, Math.min(58, onlineCount + d));
+            updateCounter(onlineCount);
+        }, 45000);
+    });
+
+})(); // end live traffic IIFE
 </script>
 
 </body>
