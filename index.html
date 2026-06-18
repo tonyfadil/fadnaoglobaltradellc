@@ -260,6 +260,10 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
+        #booksGrid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
         .card {
             background: var(--white);
             border-radius: 16px;
@@ -306,32 +310,54 @@
         .book-card {
             background: var(--white);
             border-radius: 14px;
-            padding: 24px;
+            overflow: hidden;
             box-shadow: var(--card-shadow);
             border: 1px solid rgba(10,31,68,0.07);
             display: flex;
             flex-direction: column;
-            min-height: 180px;
             transition: box-shadow 0.3s, transform 0.3s;
         }
         .book-card:hover { box-shadow: var(--card-hover); transform: translateY(-5px); }
+        .book-cover {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            display: block;
+            background: var(--warm-gray);
+        }
+        .book-cover-placeholder {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            background: linear-gradient(145deg, var(--navy), var(--navy-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: rgba(255,255,255,0.25);
+        }
+        .book-card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
         .book-genre {
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .book-card h3 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--navy);
             flex: 1;
             line-height: 1.35;
             margin-bottom: 8px;
         }
-        .book-card p { font-size: 13px; color: var(--text-mid); margin-bottom: 12px; }
+        .book-card p { font-size: 12px; color: var(--text-mid); margin-bottom: 10px; line-height: 1.5; }
         .book-btn {
             display: inline-block;
             padding: 9px 18px;
@@ -1632,219 +1658,436 @@
             <button class="filter-tab" data-genre="it">IT &amp; Tech</button>
         </div>
 
-        </div>
-            <div class="book-card" data-genre="Spirituality">
-                <div class="book-genre">Spirituality</div>
-                <h3>THE 12 SPIRITUAL LAWS OF MONEY Journey to Absolute Wealth</h3>
-                <p>The Spiritual Laws of Money: Journey to Absolute Wealth is unlike any financial book you have ever read. It does not give you tips 
-                    for cutting your coffee budget or hacks for timing the stock market. It goes deeper — far deeper — to the root of why some people 
-                    draw wealth naturally and effortlessly while others work just as hard and remain perpetually stuck.
-                    Drawing on the wisdom of ancient traditions — from the Hermetic Principles of Egypt to the Vedic teachings of India, from Stoic 
-                    philosophy to the Quran, the Bible, and Buddhist dharma — and weaving it together with modern neuroscience, behavioral psychology, 
-                    and the documented real-life stories of the world's most extraordinary wealth builders, M Fadil reveals the twelve timeless, universal
-                    Spiritual Laws that govern how abundance flows through the universe — and through your life.</p>
-                <a href="https://a.co/d/0aMGC9Qw" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
         <div class="cards" id="booksGrid">
+
+            <!-- ── Spirituality ── -->
+            <div class="book-card" data-genre="Spirituality">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/12spirituallaws.jpg"
+                     alt="THE 12 SPIRITUAL LAWS OF MONEY cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-book-open"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Spirituality</div>
+                    <h3>THE 12 SPIRITUAL LAWS OF MONEY: Journey to Absolute Wealth</h3>
+                    <p>Reveals twelve timeless Spiritual Laws that govern how abundance flows through the universe — drawing on ancient traditions and modern neuroscience.</p>
+                    <a href="https://a.co/d/0aMGC9Qw" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Technology / AI ── -->
             <div class="book-card" data-genre="Technology">
-               <div class="book-genre">Technology / AI</div>
-               <h3>Step by Step Build and Host Your Own Website Yourself No coding experience,no server needed</h3>
-               <p>What if you could launch a professional business website this week — without hiring a developer, without paying for 
-                   hosting, and without writing a single line of code yourself?In this practical, step-by-step guide, M. Fadil — Linux Red Hat System
-                   Administrator, entrepreneur, and founder of Fad Nao Global Trade LLC — reveals exactly how he built a revenue-generating business 
-                   website using Claude AI and hosted it completely free using GitHub Pages. No server. No monthly hosting fees. No technical background
-                   required.The only investment? An optional one-month Claude AI Pro subscription at $20 — and after your site is live, it runs for free forever.
-                   Inside this book, you will discover the cheat code.
-                   ✅ How AI writes professional HTML, CSS, and JavaScript code from plain English descriptions — so anyone can build a website, regardless of experience
-                   ✅ The proven $20 strategy: subscribe for one month, build your complete website, cancel, and keep hosting for free indefinitely
-                   ✅ How to build every page of your website: homepage, about, services, books or portfolio, contact, and more
-                   ✅ Real-world prompts and templates you can copy and use with Claude AI today
-                   ✅ SEO basics to help Google find your website and send you organic traffic
-                   ✅ A ready-to-use source code template you can customize and launch immediately
-                   ✅ How to connect a custom domain name and make your site look fully professional
-                   ✅ What to do when you need help — including how FADNAOGLOGALTRADE LLC can provide source code, troubleshooting, and full website building services
-                   Whether you are a small business owner, an author promoting your books, a freelancer building a portfolio, a nonprofit on a tight budget, or simply someone with a great idea and no technical background — this book gives you everything you need to go from zero to live website.
-                   The internet is open. Your space in it is free. This book shows you how to claim it.</p>
-                <a href="https://a.co/d/0doT5F9P" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/buildwebsite.jpg"
+                     alt="Build and Host Your Own Website cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Technology / AI</div>
+                    <h3>Step by Step: Build and Host Your Own Website — No Coding Experience, No Server Needed</h3>
+                    <p>How M. Fadil built a professional business website using Claude AI and hosted it free on GitHub Pages — zero code, zero hosting fees.</p>
+                    <a href="https://a.co/d/0doT5F9P" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>She Is No More Yours</h3>
-                <a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/sheisnomore.jpg"
+                     alt="She Is No More Yours cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>She Is No More Yours</h3>
+                    <a href="https://a.co/d/05Eb4PfV" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── History ── -->
             <div class="book-card" data-genre="history">
-                <div class="book-genre">History / Adventure</div>
-                <h3>The Lost Gold of Mansa Musa</h3>
-                <a href="https://a.co/d/04BRjQLS" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/mansamusa.jpg"
+                     alt="The Lost Gold of Mansa Musa cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-landmark"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">History / Adventure</div>
+                    <h3>The Lost Gold of Mansa Musa</h3>
+                    <a href="https://a.co/d/04BRjQLS" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Billionaire's Secret Heir</h3>
-                <a href="https://a.co/d/0ap9pgPF" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/billionairesecretheir.jpg"
+                     alt="The Billionaire's Secret Heir cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Billionaire's Secret Heir</h3>
+                    <a href="https://a.co/d/0ap9pgPF" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Bodyguard Contract</h3>
-                <a href="https://www.amazon.com/dp/B0GWT8LSVJ" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/bodyguardcontract.jpg"
+                     alt="The Bodyguard Contract cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Bodyguard Contract</h3>
+                    <a href="https://www.amazon.com/dp/B0GWT8LSVJ" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Thriller</div>
-                <h3>The Butterfly Book 1 The First Wing THE BUTTERFLY TRILOGY</h3>
-                <a href="https://a.co/d/0hSasQUA" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Butterfly Book 2 The Broken Wing THE BUTTERFLY TRILOGY</h3>
-                <a href="https://a.co/d/0iHlmBFJ" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
+
+            <!-- ── Thriller ── -->
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Thriller</div>
-                <h3>The Butterfly Book 3 The Last Wing THE BUTTERFLY TRILOGY</h3>
-                <a href="https://a.co/d/0frB7rX7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/butterfly1.jpg"
+                     alt="The Butterfly Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Thriller</div>
+                    <h3>The Butterfly Book 1 — The First Wing (THE BUTTERFLY TRILOGY)</h3>
+                    <a href="https://a.co/d/0hSasQUA" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance — Trilogy</div>
-                <h3>They Hate Each Other Fall in Love Book 1</h3>
-                <a href="https://a.co/d/02QJoNQT" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/butterfly2.jpg"
+                     alt="The Butterfly Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Butterfly Book 2 — The Broken Wing (THE BUTTERFLY TRILOGY)</h3>
+                    <a href="https://a.co/d/0iHlmBFJ" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance — Trilogy</div>
-                <h3>They Hate Each Other Fall in Love Book 2</h3>
-                <a href="https://a.co/d/01UpoYCf" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance — Trilogy</div>
-                <h3>They Hate Each Other Fall in Love Book 3</h3>
-                <a href="https://a.co/d/04OaMQzK" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
+
+            <!-- ── Thriller ── -->
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Crime / Non-Fiction</div>
-                <h3>Inside the New York Underworld</h3>
-                <p>Power, Crime, and Hidden History of Manhattan</p>
-                <a href="https://a.co/d/03nKAoDI" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/butterfly3.jpg"
+                     alt="The Butterfly Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Thriller</div>
+                    <h3>The Butterfly Book 3 — The Last Wing (THE BUTTERFLY TRILOGY)</h3>
+                    <a href="https://a.co/d/0frB7rX7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance Trilogy ── -->
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/theyhateeachother1.jpg"
+                     alt="They Hate Each Other Fall in Love Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance — Trilogy</div>
+                    <h3>They Hate Each Other Fall in Love — Book 1</h3>
+                    <a href="https://a.co/d/02QJoNQT" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/theyhateeachother2.jpg"
+                     alt="They Hate Each Other Fall in Love Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance — Trilogy</div>
+                    <h3>They Hate Each Other Fall in Love — Book 2</h3>
+                    <a href="https://a.co/d/01UpoYCf" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/theyhateeachother3.jpg"
+                     alt="They Hate Each Other Fall in Love Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance — Trilogy</div>
+                    <h3>They Hate Each Other Fall in Love — Book 3</h3>
+                    <a href="https://a.co/d/04OaMQzK" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Crime / Non-Fiction ── -->
+            <div class="book-card" data-genre="thriller">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/newyorkunderworld.jpg"
+                     alt="Inside the New York Underworld cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Crime / Non-Fiction</div>
+                    <h3>Inside the New York Underworld</h3>
+                    <p>Power, Crime, and Hidden History of Manhattan</p>
+                    <a href="https://a.co/d/03nKAoDI" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── History ── -->
             <div class="book-card" data-genre="history">
-                <div class="book-genre">History</div>
-                <h3>MANHATTAN</h3>
-                <a href="https://a.co/d/0gxTD7po" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/manhattan.jpg"
+                     alt="MANHATTAN cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-city"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">History</div>
+                    <h3>MANHATTAN</h3>
+                    <a href="https://a.co/d/0gxTD7po" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Marriage Contract That Went Too Far Book 1</h3>
-                <p>A Fake Marriage Romance</p>
-                <a href="https://a.co/d/0hyjjVAo" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/marriagecontract1.jpg"
+                     alt="The Marriage Contract Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Marriage Contract That Went Too Far — Book 1</h3>
+                    <p>A Fake Marriage Romance</p>
+                    <a href="https://a.co/d/0hyjjVAo" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Marriage Contract That Went Too Far Book 2</h3>
-                <p>A Fake Marriage Romance</p>
-                <a href="https://a.co/d/01f4gB4N" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/marriagecontract2.jpg"
+                     alt="The Marriage Contract Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Marriage Contract That Went Too Far — Book 2</h3>
+                    <p>A Fake Marriage Romance</p>
+                    <a href="https://a.co/d/01f4gB4N" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Marriage Contract That Went Too Far Book 3</h3>
-                <p>A Fake Marriage Romance The Final Episode</p>
-                <a href="https://a.co/d/06QTZYXa" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/marriagecontract3.jpg"
+                     alt="The Marriage Contract Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Marriage Contract That Went Too Far — Book 3</h3>
+                    <p>A Fake Marriage Romance — The Final Episode</p>
+                    <a href="https://a.co/d/06QTZYXa" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Thriller / Sterling Legacy ── -->
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Thriller</div>
-                <h3>Blood Will Tell Book 1</h3> 
-                <p>The Sterling Legacy By M.Fadil<p> 
-                <a href="https://a.co/d/06yeYRFj" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/bloodwilltell.jpg"
+                     alt="Blood Will Tell Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Thriller</div>
+                    <h3>Blood Will Tell — Book 1: The Sterling Legacy</h3>
+                    <a href="https://a.co/d/06yeYRFj" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Thriller</div>
-                <h3>Blood Will Rise Book 2</h3> 
-                <p>The Sterling Legacy by M. Fadil<p>
-                <a href="https://a.co/d/0bGJoXey" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/bloodwillrise.jpg"
+                     alt="Blood Will Rise Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Thriller</div>
+                    <h3>Blood Will Rise — Book 2: The Sterling Legacy</h3>
+                    <a href="https://a.co/d/0bGJoXey" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Thriller</div>
-                <h3>Blood Will Reign Book 3</h3> 
-                <p>The Sterling Legacy by M. Fadil<p>
-                <a href="https://a.co/d/0hjg57Pb" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/bloodwillreign.jpg"
+                     alt="Blood Will Reign Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Thriller</div>
+                    <h3>Blood Will Reign — Book 3: The Sterling Legacy</h3>
+                    <a href="https://a.co/d/0hjg57Pb" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Crime / Pilot's Secret ── -->
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Crime</div>
-                <h3>The Pilot's Secret Book 1</h3>
-                <a href="https://a.co/d/03PYjSQa" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/pilotssecret1.jpg"
+                     alt="The Pilot's Secret Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Crime</div>
+                    <h3>The Pilot's Secret — Book 1</h3>
+                    <a href="https://a.co/d/03PYjSQa" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="thriller">
-                <div class="book-genre">Crime</div>
-                <h3>The Pilot's Secret Book 2</h3> 
-                <p>(Ghost Wings) A monster walks free—and the hunt has only just begun<p>
-                <a href="https://a.co/d/0bgGZyHp" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/pilotssecret2.jpg"
+                     alt="The Pilot's Secret Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Crime</div>
+                    <h3>The Pilot's Secret — Book 2 (Ghost Wings)</h3>
+                    <p>A monster walks free — and the hunt has only just begun.</p>
+                    <a href="https://a.co/d/0bgGZyHp" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <div class="book-card" data-genre="thriller">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/pilotssecret3.jpg"
+                     alt="The Pilot's Secret Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Crime</div>
+                    <h3>The Pilot's Secret — Book 3: Final Descent</h3>
+                    <p>Serial-Killer Manhunts — the thrilling conclusion.</p>
+                    <a href="https://a.co/d/04LZuG1y" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Romance / Billionaire ── -->
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Pilot's Secret Book 3</h3> 
-                <p>Serial‑Killer Manhunts: Final Descent By M.Fadil<p>
-                <a href="https://a.co/d/04LZuG1y" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/billionaireboughtbuilding.jpg"
+                     alt="The Billionaire Who Bought the Building cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Billionaire Who Bought the Building</h3>
+                    <a href="https://www.amazon.com/dp/B0D24D84R7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Billionaire Who Bought the Building</h3>
-                <a href="https://www.amazon.com/dp/B0D24D84R7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/billionairenextdoor.jpg"
+                     alt="The Billionaire Next Door cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Billionaire Next Door</h3>
+                    <a href="https://www.amazon.com/dp/B0H4N9HMZH" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Billionaire Next Door</h3>
-                <a href="https://www.amazon.com/dp/B0H4N9HMZH" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/billionairesclub.jpg"
+                     alt="The Billionaire's Club cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Billionaire's Club</h3>
+                    <a href="https://www.amazon.com/dp/B0GX2Y9D2F" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
             <div class="book-card" data-genre="romance">
-                <div class="book-genre">Romance</div>
-                <h3>The Billionaire's Club</h3>
-                <a href="https://www.amazon.com/dp/B0GX2Y9D2F" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/billionairesvow.jpg"
+                     alt="The Billionaire's Vow cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Billionaire's Vow</h3>
+                    <p>When a young widow‑turned‑millionaire rises too quickly, the world's most powerful women unite to crush her.</p>
+                    <a href="https://www.amazon.com/dp/B0H49RPFG7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
-            <div class="book-card" data-genre="romance">
-               <div class="book-genre">Romance</div>
-               <h3>The Billionaire's Vow</h3> 
-               <p>When a young widow‑turned‑millionaire rises too quickly and gets dangerously close to joining their
-                   ranks, the world's most powerful women unite to crush her<p>
-               <a href="https://www.amazon.com/dp/B0H49RPFG7" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
+
+            <!-- ── Technology / AI ── -->
             <div class="book-card" data-genre="Technology">
-               <div class="book-genre">Technology / AI</div>
-               <h3>The Genesis of Artificial Intelligence and the Real Actors of AI</h3>
-               <p>From the mythical automata of ancient Greece to the billion-parameter language models reshaping our world today, The Genesis 
-            '        of Artificial Intelligence and the Real Actors of AI is the definitive chronicle of humanity's most audacious technological
-                    pursuit — told through the lives, rivalries, and breakthroughs of the people who made it possible.</p>
-                <a href="https://www.amazon.com/dp/B0H4N4SHKT" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/genesisai.jpg"
+                     alt="The Genesis of Artificial Intelligence cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-robot"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Technology / AI</div>
+                    <h3>The Genesis of Artificial Intelligence and the Real Actors of AI</h3>
+                    <p>The definitive chronicle of humanity's most audacious technological pursuit — told through the lives and breakthroughs of those who made it possible.</p>
+                    <a href="https://www.amazon.com/dp/B0H4N4SHKT" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
-            <div class="book-card" data-genre="thriller">
-               <div class="book-genre">Technology / IT</div>
-               <h3>How To Stay Relevant In The AI Era</h3>
-               <p>As artificial intelligence transforms industries and automates routine tasks, staying relevant requires a commitment to
-                    continuous learning, adaptability, and the development of uniquely human skills. This book explores how professionals 
-                    can thrive alongside AI by embracing emerging technologies, strengthening critical thinking, creativity, leadership, 
-                    and problem-solving abilities, and learning to leverage AI as a powerful productivity tool rather than viewing it as a
-                    threat. Through practical strategies, career insights, and real-world examples, readers will discover how to future-proof
-                    their careers, identify new opportunities created by AI, build valuable technical and soft skills, and remain competitive 
-                    in a rapidly evolving job market. Whether you work in IT, business, healthcare, education, or another field, this guide 
-                    provides a roadmap for turning technological disruption into long-term professional growth and success.</p>
-                <a href="https://a.co/d/04XTALG9" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Business Romance</div>
-                <h3>The Rival CEOs Book 1</h3>
-                <a href="https://a.co/d/0if2mCcs" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
-            <div class="book-card" data-genre="romance">
-                <div class="book-genre">Business Romance</div>
-                <h3>The Rival CEOs Book 2 :The Ghost Protocol</h3>
-                <a href="https://a.co/d/09iAfVzI" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
-            <div class="book-card" data-genre="history">
-                <div class="book-genre">Romance</div>
-                <h3>The Rival CEOs Book 3 Final episode</h3>
-                <a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
-            </div>
+
+            <!-- ── IT / Career ── -->
             <div class="book-card" data-genre="it">
-                <div class="book-genre">IT / Career</div>
-                <h3>Linux Admin Interview Questions Every Candidate Should Know</h3>
-                <p>80% of questions asked in real interviews</p>
-                <a href="https://a.co/d/0dMQrg6S" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/stayrelevantai.jpg"
+                     alt="How To Stay Relevant In The AI Era cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Technology / IT</div>
+                    <h3>How To Stay Relevant In The AI Era</h3>
+                    <p>Practical strategies for professionals to future-proof their careers and thrive alongside AI.</p>
+                    <a href="https://a.co/d/04XTALG9" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
             </div>
+
+            <!-- ── Business Romance / Rival CEOs ── -->
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/rivalceos1.jpg"
+                     alt="The Rival CEOs Book 1 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Business Romance</div>
+                    <h3>The Rival CEOs — Book 1</h3>
+                    <a href="https://a.co/d/0if2mCcs" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/rivalceos2.jpg"
+                     alt="The Rival CEOs Book 2 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Business Romance</div>
+                    <h3>The Rival CEOs — Book 2: The Ghost Protocol</h3>
+                    <a href="https://a.co/d/09iAfVzI" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="book-card" data-genre="romance">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/rivalceos3.jpg"
+                     alt="The Rival CEOs Book 3 cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">Romance</div>
+                    <h3>The Rival CEOs — Book 3: Final Episode</h3>
+                    <a href="https://a.co/d/0eBfmLe6" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── IT / Career ── -->
+            <div class="book-card" data-genre="it">
+                <img src="https://raw.githubusercontent.com/Fadnaoglobal/fadnaoglobal.github.io/main/images/linuxinterview.jpg"
+                     alt="Linux Admin Interview Questions cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-terminal"></i></div>
+                <div class="book-card-body">
+                    <div class="book-genre">IT / Career</div>
+                    <h3>Linux Admin Interview Questions Every Candidate Should Know</h3>
+                    <p>80% of questions asked in real interviews</p>
+                    <a href="https://a.co/d/0dMQrg6S" target="_blank" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
         </div>
 
         <div style="text-align:center; margin-top:40px;">
@@ -2611,6 +2854,5 @@ document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .wc-t
 
 })(); // end live traffic IIFE
 </script>
-
 </body>
 </html>
