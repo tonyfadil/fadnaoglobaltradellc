@@ -17,7 +17,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
@@ -35,6 +35,7 @@
             --white: #FFFFFF;
             --card-shadow: 0 4px 24px rgba(10,31,68,0.10);
             --card-hover: 0 12px 40px rgba(10,31,68,0.18);
+            --fb-blue: #1877F2;
         }
 
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -125,12 +126,23 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            perspective: 1200px;
         }
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
             background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8962A' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+        }
+        .hero-glow {
+            position: absolute;
+            top: -20%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(200,150,42,0.16) 0%, transparent 65%);
+            transform: translateX(-50%);
+            pointer-events: none;
         }
         .hero-inner { position: relative; z-index: 1; max-width: 840px; margin: auto; }
         .hero img.logo {
@@ -139,7 +151,10 @@
             margin: 0 auto 28px;
             display: block;
             filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
         }
+        .hero img.logo:hover { transform: rotateY(12deg) rotateX(4deg) scale(1.04); }
         .hero-eyebrow {
             display: inline-block;
             background: rgba(200,150,42,0.18);
@@ -160,7 +175,12 @@
             margin-bottom: 22px;
             font-weight: 900;
         }
-        .hero h1 span { color: var(--gold-light); }
+        .hero h1 span {
+            background: linear-gradient(100deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         .hero p {
             font-size: clamp(1rem, 2vw, 1.2rem);
             color: rgba(255,255,255,0.82);
@@ -268,6 +288,7 @@
         #booksGrid {
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
+            perspective: 1800px;
         }
         .card {
             background: var(--white);
@@ -311,7 +332,7 @@
         }
         .card-link:hover { color: var(--gold-light); }
 
-        /* ── BOOK CARDS ─────────────────────────────────── */
+        /* ── BOOK CARDS (3D shelf treatment) ────────────── */
         .book-card {
             background: var(--white);
             border-radius: 14px;
@@ -320,16 +341,39 @@
             border: 1px solid rgba(10,31,68,0.07);
             display: flex;
             flex-direction: column;
-            transition: box-shadow 0.3s, transform 0.3s;
+            transition: box-shadow 0.35s, transform 0.35s;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
-        .book-card:hover { box-shadow: var(--card-hover); transform: translateY(-5px); }
+        .book-card:hover {
+            box-shadow: 0 26px 50px -10px rgba(10,31,68,0.35), 0 8px 20px rgba(200,150,42,0.15);
+            transform: translateY(-10px) rotateX(4deg) rotateY(-3deg) scale(1.025);
+            z-index: 2;
+        }
+        .book-cover-wrap {
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+        .book-cover-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.16) 50%, transparent 60%);
+            transform: translateX(-120%);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+        }
+        .book-card:hover .book-cover-wrap::after { transform: translateX(120%); }
         .book-cover {
             width: 100%;
             aspect-ratio: 2 / 3;
             object-fit: cover;
             display: block;
             background: var(--warm-gray);
+            transition: transform 0.35s ease;
         }
+        .book-card:hover .book-cover { transform: scale(1.04); }
         .book-cover-placeholder {
             width: 100%;
             aspect-ratio: 2 / 3;
@@ -377,6 +421,70 @@
             text-align: center;
         }
         .book-btn:hover { background: var(--gold); }
+
+        /* ── BOOK SEARCH BAR ─────────────────────────────── */
+        .book-search-wrap {
+            max-width: 560px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        .book-search-wrap input {
+            width: 100%;
+            padding: 16px 52px 16px 50px;
+            border-radius: 14px;
+            border: 1.5px solid #DDD8D0;
+            background: var(--white);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            outline: none;
+            box-shadow: 0 2px 14px rgba(10,31,68,0.06);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .book-search-wrap input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 4px 20px rgba(200,150,42,0.18);
+        }
+        .book-search-wrap i.fa-magnifying-glass {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        .book-search-clear {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 16px;
+            cursor: pointer;
+            display: none;
+            padding: 4px;
+        }
+        .book-search-clear.show { display: block; }
+        .book-search-count {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-mid);
+            margin-top: 10px;
+            margin-bottom: -6px;
+            min-height: 18px;
+        }
+        .book-search-count strong { color: var(--gold); }
+        .no-results-msg {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-mid);
+            font-size: 15px;
+            display: none;
+        }
+        .no-results-msg.show { display: block; }
+        .no-results-msg i { font-size: 30px; color: var(--gold); margin-bottom: 14px; display: block; }
 
         /* ── NEWSLETTER ─────────────────────────────────── */
         .newsletter-section {
@@ -716,6 +824,96 @@
         .service-pill i { color: var(--gold-light); font-size: 13px; }
         .service-pills { display: flex; flex-wrap: wrap; gap: 10px; }
 
+        /* ── COMMUNITY / FACEBOOK SECTION ────────────────── */
+        .community-section {
+            background: var(--warm-gray);
+            padding: 80px 20px;
+        }
+        .community-inner {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .community-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+        .community-text p { color: var(--text-mid); font-size: 15.5px; margin-bottom: 24px; line-height: 1.75; }
+        .community-stats {
+            display: flex;
+            gap: 28px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        .community-stat { text-align: left; }
+        .community-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+            line-height: 1.1;
+        }
+        .community-stat .lbl { font-size: 12.5px; color: var(--text-mid); font-weight: 500; }
+        .fb-follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--fb-blue);
+            color: var(--white);
+            padding: 13px 26px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .fb-follow-btn:hover { background: #1565d8; transform: translateY(-2px); }
+        .fb-follow-btn i { font-size: 18px; }
+        .community-widget-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+        .community-widget-card .fb-page-container {
+            width: 100%;
+            min-height: 130px;
+            display: flex;
+            justify-content: center;
+        }
+        .fb-widget-fallback {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+            padding: 30px 16px;
+            width: 100%;
+        }
+        .fb-widget-fallback .fb-icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--fb-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        .fb-widget-fallback h4 { font-size: 16px; color: var(--navy); font-weight: 700; }
+        .fb-widget-fallback p { font-size: 13px; color: var(--text-mid); max-width: 240px; }
+
         /* ── CONTACT ────────────────────────────────────── */
         .contact-grid {
             display: grid;
@@ -802,6 +1000,7 @@
             transition: background 0.2s;
         }
         .social-btn:hover { background: var(--gold); }
+        .social-btn.fb-btn:hover { background: var(--fb-blue); }
         .footer-col h4 {
             font-size: 13px;
             font-weight: 700;
@@ -962,6 +1161,7 @@
             .footer-top { grid-template-columns: 1fr 1fr; }
             .about-visual { display: none; }
             .consult-inner { padding: 40px 30px; }
+            .community-inner { grid-template-columns: 1fr; }
         }
         @media (max-width: 640px) {
             .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
@@ -972,6 +1172,7 @@
             .form-row { grid-template-columns: 1fr; }
             .trust-inner { gap: 16px; }
             .about-stats { grid-template-columns: 1fr 1fr; }
+            .book-card:hover { transform: translateY(-6px) scale(1.01); }
         }
 
         /* ── BOOK FILTER TABS ───────────────────────────── */
@@ -1078,7 +1279,7 @@
         }
         .milestone-banner .btn-navy:hover { background: var(--navy-bright); transform: translateY(-2px); }
 
-        /* ── WORLD CUP 2026 SECTION ─────────────────────── */
+        /* ── FIFA WORLD CUP 2026 SECTION ─────────────────────── */
         .wc-section {
             background: linear-gradient(160deg, #06142E 0%, var(--navy) 45%, var(--navy-mid) 100%);
             color: var(--white);
@@ -1252,6 +1453,8 @@
         @media (prefers-reduced-motion: reduce) {
             .milestone-banner { animation: none; }
             .wc-team:hover { transform: none; }
+            .book-card:hover { transform: translateY(-6px); }
+            .hero img.logo:hover { transform: none; }
         }
 
         /* ══════════════════════════════════════════════════
@@ -1443,6 +1646,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#books">Books</a></li>
+        <li><a href="#community">Community</a></li>
         <li><a href="#worldcup2026">World Cup 2026</a></li>
         <li><a href="#pricing">Work With Us</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
@@ -1451,6 +1655,7 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────── -->
 <header class="hero">
+    <div class="hero-glow"></div>
     <div class="hero-inner">
         <a href="#"><img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC" class="logo"></a>
         <div class="hero-eyebrow">New York · Benin · Global</div>
@@ -1655,6 +1860,13 @@
         <h2 class="section-title">Books &amp; Publications</h2>
         <p class="section-sub">Explore our growing catalog of fiction, history, romance, and professional guides available on Amazon.</p>
 
+        <div class="book-search-wrap">
+            <i class="fas fa-magnifying-glass"></i>
+            <input type="text" id="bookSearchInput" placeholder="Search by title, genre, or keyword…" autocomplete="off">
+            <button class="book-search-clear" id="bookSearchClear" aria-label="Clear search"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="book-search-count" id="bookSearchCount"></div>
+
         <div class="filter-tabs" id="filterTabs">
             <button class="filter-tab active" data-genre="all">All Books</button>
             <button class="filter-tab" data-genre="history">History &amp; Non-Fiction</button>
@@ -1667,10 +1879,12 @@
 
             <!-- ── NEW RELEASE: Mafia Romance ── -->
             <div class="book-card" data-genre="Mafia Romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Vow-She-Broke-Book2.jpg"
                      alt="The Vow She Broke Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Mafia Romance</div>
                     <h3>The Vow She Broke — Book 2</h3>
@@ -1684,10 +1898,12 @@
 
             <!-- ── NEW RELEASE: Mafia Romance ── -->
             <div class="book-card" data-genre="Mafia Romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Vow-She-Broke-Book3.jpg"
                      alt="The Vow She Broke Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Mafia Romance</div>
                     <h3>The Vow She Broke — Book 3</h3>
@@ -1703,10 +1919,12 @@
 
             <!-- ── NEW RELEASE: Psychological Thriller ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Glass-Mind-Book1.jpg"
                      alt="The Glass Mind Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Psychological Thriller</div>
                     <h3>The Glass Mind — Book 1</h3>
@@ -1719,10 +1937,12 @@
 
             <!-- ── NEW RELEASE: Psychological Thriller ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Glass-Mind-Book2.jpg"
                      alt="The Glass Mind Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Psychological Thriller</div>
                     <h3>The Glass Mind — Book 2</h3>
@@ -1736,10 +1956,12 @@
 
             <!-- ── NEW RELEASE: Psychological Thriller ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Glass-Mind-Book3.jpg"
                      alt="The Glass Mind Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Psychological Thriller</div>
                     <h3>The Glass Mind — Book 3</h3>
@@ -1752,10 +1974,12 @@
 
            <!-- ── NEW RELEASE: Psychological Thriller ── -->
 <div class="book-card" data-genre="thriller">
+    <div class="book-cover-wrap">
     <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Glass-Mind-Book4.jpg"
          alt="The Glass Mind Book 4 cover" class="book-cover"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
     <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+    </div>
     <div class="book-card-body">
         <div class="book-genre">Psychological Thriller</div>
         <h3>The Glass Mind — Book 4</h3>
@@ -1769,10 +1993,12 @@
 
             <!-- ── Spirituality ── -->
             <div class="book-card" data-genre="Spirituality">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-12-Spiritual-Laws-of-money-Journey-to-absolute-wealth.jpg"
                      alt="THE 12 SPIRITUAL LAWS OF MONEY cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-book-open"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Spirituality</div>
                     <h3>THE 12 SPIRITUAL LAWS OF MONEY: Journey to Absolute Wealth</h3>
@@ -1783,10 +2009,12 @@
 
             <!-- ── Technology / AI ── -->
             <div class="book-card" data-genre="Technology">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Step-by-step-build-and-host-your-own-website-yourself-No-coding-experience-no-server-needed.jpg"
                      alt="Build and Host Your Own Website cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Technology / AI</div>
                     <h3>Step by Step: Build and Host Your Own Website — No Coding Experience, No Server Needed</h3>
@@ -1797,10 +2025,12 @@
 
             <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/She-Is-No-More-Yours.jpg"
                      alt="She Is No More Yours cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>She Is No More Yours</h3>
@@ -1810,10 +2040,12 @@
 
             <!-- ── History ── -->
             <div class="book-card" data-genre="history">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Lost-Gold-of-Mansa-Musa.jpg"
                      alt="The Lost Gold of Mansa Musa cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-landmark"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">History / Adventure</div>
                     <h3>The Lost Gold of Mansa Musa</h3>
@@ -1823,10 +2055,12 @@
 
             <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Billionaires-Secret-Heir.jpg"
                      alt="The Billionaire's Secret Heir cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Billionaire's Secret Heir</h3>
@@ -1836,10 +2070,12 @@
 
             <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Bodyguard-Contract.jpg"
                      alt="The Bodyguard Contract cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Bodyguard Contract</h3>
@@ -1849,10 +2085,12 @@
 
             <!-- ── Thriller ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Butterfly-Book1-The-First-Wing-THE-BUTTERFLY-TRILOGY.jpg"
                      alt="The Butterfly Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Thriller</div>
                     <h3>The Butterfly Book 1 — The First Wing (THE BUTTERFLY TRILOGY)</h3>
@@ -1862,10 +2100,12 @@
 
             <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Butterfly-Book2-The-Broken-Wing-THE-BUTTERFLY-TRILOGY.jpg"
                      alt="The Butterfly Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Butterfly Book 2 — The Broken Wing (THE BUTTERFLY TRILOGY)</h3>
@@ -1875,10 +2115,12 @@
 
             <!-- ── Thriller ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Butterfly-Book3-The-Last-Wing-THE-BUTTERFLY-TRILOGY.jpg"
                      alt="The Butterfly Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Thriller</div>
                     <h3>The Butterfly Book 3 — The Last Wing (THE BUTTERFLY TRILOGY)</h3>
@@ -1888,10 +2130,12 @@
 
             <!-- ── Romance Trilogy ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/They-Hate-Each-Other-Fall-in-Love-Book1.png"
                      alt="They Hate Each Other Fall in Love Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance — Trilogy</div>
                     <h3>They Hate Each Other Fall in Love — Book 1</h3>
@@ -1900,10 +2144,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/They-Hate-Each-Other-Fall-in-Love-Book2.jpg"
                      alt="They Hate Each Other Fall in Love Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance — Trilogy</div>
                     <h3>They Hate Each Other Fall in Love — Book 2</h3>
@@ -1912,10 +2158,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/They-Hate-Each-Other-Fall-in-Love-Book3.jpg"
                      alt="They Hate Each Other Fall in Love Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance — Trilogy</div>
                     <h3>They Hate Each Other Fall in Love — Book 3</h3>
@@ -1925,10 +2173,12 @@
 
             <!-- ── Crime / Non-Fiction ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Inside-the-New-York-Underworld.jpg"
                      alt="Inside the New York Underworld cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Crime / Non-Fiction</div>
                     <h3>Inside the New York Underworld</h3>
@@ -1939,10 +2189,12 @@
 
             <!-- ── History ── -->
             <div class="book-card" data-genre="history">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Manhattan.jpg"
                      alt="MANHATTAN cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-city"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">History</div>
                     <h3>MANHATTAN</h3>
@@ -1952,10 +2204,12 @@
 
             <!-- ── Romance ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Marriage-contract-that-went-too-far-Book1.jpg"
                      alt="The Marriage Contract Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Marriage Contract That Went Too Far — Book 1</h3>
@@ -1965,10 +2219,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Marriage-contract-that-went-too-far-Book2.jpg"
                      alt="The Marriage Contract Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Marriage Contract That Went Too Far — Book 2</h3>
@@ -1978,10 +2234,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Marriage-contract-that-went-too-far-Book3.jpg"
                      alt="The Marriage Contract Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Marriage Contract That Went Too Far — Book 3</h3>
@@ -1992,10 +2250,12 @@
 
             <!-- ── Thriller / Sterling Legacy ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Blood-Will-Tell-Book1.jpg"
                      alt="Blood Will Tell Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Thriller</div>
                     <h3>Blood Will Tell — Book 1: The Sterling Legacy</h3>
@@ -2004,10 +2264,12 @@
             </div>
 
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Blood-Will-Rise-Book2.jpg"
                      alt="Blood Will Rise Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Thriller</div>
                     <h3>Blood Will Rise — Book 2: The Sterling Legacy</h3>
@@ -2016,10 +2278,12 @@
             </div>
 
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Blood-Will-Reign-Book3.jpg"
                      alt="Blood Will Reign Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Thriller</div>
                     <h3>Blood Will Reign — Book 3: The Sterling Legacy</h3>
@@ -2029,10 +2293,12 @@
 
             <!-- ── Crime / Pilot's Secret ── -->
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Pilots-Secret-Book1.jpg"
                      alt="The Pilot's Secret Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Crime</div>
                     <h3>The Pilot's Secret — Book 1</h3>
@@ -2041,10 +2307,12 @@
             </div>
 
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Pilots-Secret-Book2.jpg"
                      alt="The Pilot's Secret Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Crime</div>
                     <h3>The Pilot's Secret — Book 2 (Ghost Wings)</h3>
@@ -2054,10 +2322,12 @@
             </div>
 
             <div class="book-card" data-genre="thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Pilots-Secret-Book3.jpg"
                      alt="The Pilot's Secret Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-user-secret"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Crime</div>
                     <h3>The Pilot's Secret — Book 3: Final Descent</h3>
@@ -2068,10 +2338,12 @@
 
             <!-- ── Romance / Billionaire ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Billionaire-Who-Bought-The-Building.jpg"
                      alt="The Billionaire Who Bought the Building cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Billionaire Who Bought the Building</h3>
@@ -2080,10 +2352,12 @@
             </div> 
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Billionaire-Next-Door.jpg"
                      alt="The Billionaire Next Door cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Billionaire Next Door</h3>
@@ -2092,10 +2366,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Billionaires-Club.jpg"
                      alt="The Billionaire's Club cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Billionaire's Club</h3>
@@ -2104,10 +2380,12 @@
             </div>
 
             <div class="book-card" data-genre="Mafia Romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Vow-She-Broke-Book1.jpg"
                      alt="The Vow She Broke Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-bolt"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Mafia Romance</div>
                     <h3>The Vow She Broke Book 1</h3>
@@ -2117,10 +2395,12 @@
             </div>
 
             <div class="book-card" data-genre="Techno-Thriller">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Billionaires-Vows.jpg"
                      alt="The Billionaire's Vow cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Techno-Thriller</div>
                     <h3>The Billionaire's Vow</h3>
@@ -2131,10 +2411,12 @@
 
             <!-- ── Technology / AI ── -->
             <div class="book-card" data-genre="Technology">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Genesis-of-Artificial-Intelligence-and-the-Real-Actors-of-AI.jpg"
                      alt="The Genesis of Artificial Intelligence cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-robot"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Technology / AI</div>
                     <h3>The Genesis of Artificial Intelligence and the Real Actors of AI</h3>
@@ -2145,10 +2427,12 @@
 
             <!-- ── IT / Career ── -->
             <div class="book-card" data-genre="it">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/How-To-stay-Relevant-in-the-AI-Era.jpg"
                      alt="How To Stay Relevant In The AI Era cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-laptop-code"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Technology / IT</div>
                     <h3>How To Stay Relevant In The AI Era</h3>
@@ -2159,10 +2443,12 @@
 
             <!-- ── Business Romance / Rival CEOs ── -->
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Rival-CEOs-Book1.jpg"
                      alt="The Rival CEOs Book 1 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Business Romance</div>
                     <h3>The Rival CEOs — Book 1</h3>
@@ -2171,10 +2457,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Rival-CEOs-Book2.jpg"
                      alt="The Rival CEOs Book 2 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Business Romance</div>
                     <h3>The Rival CEOs — Book 2: The Ghost Protocol</h3>
@@ -2183,10 +2471,12 @@
             </div>
 
             <div class="book-card" data-genre="romance">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Rival-CEOs-Book3-Final-episode.jpg"
                      alt="The Rival CEOs Book 3 cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-briefcase"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">Romance</div>
                     <h3>The Rival CEOs — Book 3: Final Episode</h3>
@@ -2196,10 +2486,12 @@
 
             <!-- ── IT / Career ── -->
             <div class="book-card" data-genre="it">
+                <div class="book-cover-wrap">
                 <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Linux-Admin-Interview-Questions-Every-Candidate-Should-Know.png"
                      alt="Linux Admin Interview Questions cover" class="book-cover"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
                 <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-terminal"></i></div>
+                </div>
                 <div class="book-card-body">
                     <div class="book-genre">IT / Career</div>
                     <h3>Linux Admin Interview Questions Every Candidate Should Know</h3>
@@ -2208,6 +2500,11 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="no-results-msg" id="noResultsMsg">
+            <i class="fas fa-book-open"></i>
+            No books match your search. Try a different title, genre, or keyword.
         </div>
 
         <div style="text-align:center; margin-top:40px;">
@@ -2471,6 +2768,60 @@
     </div>
 </section>
 
+<!-- ── COMMUNITY / FACEBOOK ─────────────────────────────────────── -->
+<section class="community-section" id="community">
+    <div class="community-inner">
+        <div class="community-text">
+            <div class="section-eyebrow" style="text-align:left;">Join the Conversation</div>
+            <h2>Follow Us on Facebook</h2>
+            <p>Be part of our growing community — new book releases, publishing tips, trade updates, and behind-the-scenes stories from M. Fadil and the Fad Nao Global Trade team, posted straight to your feed.</p>
+            <div class="community-stats">
+                <div class="community-stat">
+                    <span class="num">100+</span>
+                    <span class="lbl">Books Shared</span>
+                </div>
+                <div class="community-stat">
+                    <span class="num">2</span>
+                    <span class="lbl">Countries Connected</span>
+                </div>
+                <div class="community-stat">
+                    <span class="num">Daily</span>
+                    <span class="lbl">Updates &amp; Releases</span>
+                </div>
+            </div>
+            <a href="https://www.facebook.com/profile.php?id=61578868719540" target="_blank" rel="noopener" class="fb-follow-btn">
+                <i class="fab fa-facebook"></i> Follow Fad Nao Global Trade LLC
+            </a>
+        </div>
+
+        <div class="community-widget-card">
+            <div class="fb-page-container">
+                <div class="fb-page"
+                     data-href="https://www.facebook.com/profile.php?id=61578868719540"
+                     data-tabs="timeline"
+                     data-width="340"
+                     data-height="350"
+                     data-small-header="false"
+                     data-adapt-container-width="true"
+                     data-hide-cover="false"
+                     data-show-facepile="true">
+                    <blockquote cite="https://www.facebook.com/profile.php?id=61578868719540" class="fb-xfbml-parse-ignore">
+                        <a href="https://www.facebook.com/profile.php?id=61578868719540">Fad Nao Global Trade LLC</a>
+                    </blockquote>
+                </div>
+                <!-- Fallback shown only if the SDK / iframe fails to render (e.g. offline preview) -->
+                <noscript>
+                    <div class="fb-widget-fallback">
+                        <div class="fb-icon-circle"><i class="fab fa-facebook-f"></i></div>
+                        <h4>Fad Nao Global Trade LLC</h4>
+                        <p>Enable JavaScript to view our live Facebook feed, or follow us directly on Facebook.</p>
+                    </div>
+                </noscript>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ── CONTACT ────────────────────────────────────────────────── -->
 <section class="section" id="contact">
     <div class="container">
@@ -2518,9 +2869,14 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://wa.me/13472642877" target="_blank" style="display:inline-flex; align-items:center; gap:10px; margin-top:24px; background:#25D366; color:white; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-                    <i class="fab fa-whatsapp" style="font-size:20px;"></i> Chat on WhatsApp
-                </a>
+                <div style="display:flex; gap:12px; margin-top:24px; flex-wrap:wrap;">
+                    <a href="https://wa.me/13472642877" target="_blank" style="display:inline-flex; align-items:center; gap:10px; background:#25D366; color:white; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                        <i class="fab fa-whatsapp" style="font-size:20px;"></i> Chat on WhatsApp
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61578868719540" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; background:var(--fb-blue); color:white; padding:13px 22px; border-radius:10px; text-decoration:none; font-weight:700; font-size:15px; transition:opacity 0.2s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
+                        <i class="fab fa-facebook-f" style="font-size:18px;"></i> Follow on Facebook
+                    </a>
+                </div>
             </div>
 
             <div class="contact-form-card">
@@ -2575,6 +2931,7 @@
                 <div class="footer-social">
                     <a href="mailto:fadnaoglobaltradellc@gmail.com" class="social-btn" aria-label="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://wa.me/13472642877" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61578868719540" target="_blank" rel="noopener" class="social-btn fb-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://www.amazon.com/stores/author" target="_blank" class="social-btn" aria-label="Amazon"><i class="fab fa-amazon"></i></a>
                 </div>
             </div>
@@ -2602,6 +2959,7 @@
                 <ul>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#community">Facebook Community</a></li>
                     <li><a href="#worldcup2026">World Cup 2026</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#newsletter">Newsletter</a></li>
@@ -2649,6 +3007,12 @@
 <!-- ── TOAST NOTIFICATION ─────────────────────────────────────── -->
 <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Message sent!</span></div>
 
+<!-- ── FACEBOOK SDK (for Like/Follow Page Plugin) ─────────────── -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0">
+</script>
+
 <script>
 // ── HAMBURGER ────────────────────────────────────────────────────
 document.getElementById('hamburger').addEventListener('click', () => {
@@ -2677,20 +3041,78 @@ window.addEventListener('scroll', () => {
 });
 backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// ── BOOK FILTER TABS ─────────────────────────────────────────────
-document.getElementById('filterTabs').addEventListener('click', e => {
+// ── BOOK FILTER TABS + SEARCH (combined) ─────────────────────────
+const bookCards = Array.from(document.querySelectorAll('.book-card'));
+const filterTabs = document.getElementById('filterTabs');
+const searchInput = document.getElementById('bookSearchInput');
+const searchClear = document.getElementById('bookSearchClear');
+const searchCount = document.getElementById('bookSearchCount');
+const noResultsMsg = document.getElementById('noResultsMsg');
+let activeGenre = 'all';
+
+function applyBookFilters() {
+    const query = searchInput.value.trim().toLowerCase();
+    searchClear.classList.toggle('show', query.length > 0);
+
+    let visibleCount = 0;
+    bookCards.forEach(card => {
+        const genreAttr = (card.dataset.genre || '').toLowerCase();
+        const matchesGenre = activeGenre === 'all' || genreAttr === activeGenre.toLowerCase();
+
+        const titleText = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const descText = (card.querySelector('p')?.textContent || '').toLowerCase();
+        const genreLabel = (card.querySelector('.book-genre')?.textContent || '').toLowerCase();
+        const matchesQuery = query === '' ||
+            titleText.includes(query) ||
+            descText.includes(query) ||
+            genreLabel.includes(query) ||
+            genreAttr.includes(query);
+
+        const show = matchesGenre && matchesQuery;
+        card.classList.toggle('hidden', !show);
+        if (show) visibleCount++;
+    });
+
+    if (query !== '') {
+        searchCount.textContent = visibleCount === 0
+            ? ''
+            : `Found ${visibleCount} book${visibleCount === 1 ? '' : 's'} matching “${searchInput.value.trim()}”`;
+    } else {
+        searchCount.textContent = '';
+    }
+
+    noResultsMsg.classList.toggle('show', visibleCount === 0);
+}
+
+filterTabs.addEventListener('click', e => {
     if (!e.target.classList.contains('filter-tab')) return;
     document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
     e.target.classList.add('active');
-    const genre = e.target.dataset.genre;
-    document.querySelectorAll('.book-card').forEach(card => {
-        if (genre === 'all' || card.dataset.genre === genre) {
-            card.classList.remove('hidden');
-        } else {
-            card.classList.add('hidden');
-        }
-    });
+    activeGenre = e.target.dataset.genre;
+    applyBookFilters();
 });
+
+searchInput.addEventListener('input', applyBookFilters);
+searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    applyBookFilters();
+    searchInput.focus();
+});
+
+// ── BOOK CARD 3D TILT ON MOUSE MOVE (desktop only) ───────────────
+if (window.matchMedia('(min-width: 768px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    bookCards.forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `translateY(-10px) rotateX(${(-y * 10).toFixed(2)}deg) rotateY(${(x * 10).toFixed(2)}deg) scale(1.025)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
 
 // ── COOKIE BANNER ────────────────────────────────────────────────
 function acceptCookies() {
@@ -2779,7 +3201,7 @@ const observer = new IntersectionObserver(entries => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .wc-team, .wc-fact').forEach(el => {
+document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .wc-team, .wc-fact, .community-widget-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, transform 0.3s';
