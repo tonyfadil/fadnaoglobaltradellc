@@ -1608,6 +1608,190 @@
             .traffic-bubble, .traffic-bubble.bubble-out { animation: none; opacity: 1; transform: none; }
         }
 
+        /* ── ACCOUNT / AUTH UI ──────────────────────────────────── */
+        .nav-auth { display: flex; align-items: center; gap: 14px; }
+        .nav-signin-link {
+            color: var(--text-mid);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .nav-signin-link:hover { color: var(--gold); }
+        .nav-when-signed-out, .nav-when-signed-in { display: flex; align-items: center; gap: 14px; }
+        .nav-when-signed-in { display: none; }
+        body.is-signed-in .nav-when-signed-out { display: none; }
+        body.is-signed-in .nav-when-signed-in { display: flex; }
+
+        .nav-account-wrap { position: relative; }
+        .nav-account-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--warm-gray);
+            border-radius: 30px;
+            padding: 6px 8px 6px 6px;
+            cursor: pointer;
+            border: 1px solid rgba(10,31,68,0.08);
+        }
+        .nav-account-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .nav-account-pill span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .nav-account-pill i { color: var(--text-light); font-size: 11px; margin-right: 4px; }
+
+        .account-dropdown {
+            position: absolute;
+            top: 58px;
+            right: 0;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: var(--card-hover);
+            border: 1px solid rgba(10,31,68,0.08);
+            width: 220px;
+            padding: 10px;
+            display: none;
+            z-index: 1001;
+        }
+        .account-dropdown.open { display: block; }
+        .account-dropdown-header { padding: 10px 12px 12px; border-bottom: 1px solid var(--warm-gray); margin-bottom: 6px; }
+        .account-dropdown-header strong { display: block; font-size: 14px; color: var(--navy); }
+        .account-dropdown-header span { font-size: 12px; color: var(--text-light); word-break: break-all; }
+        .account-dropdown a, .account-dropdown button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-mid);
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+        }
+        .account-dropdown a:hover, .account-dropdown button:hover { background: var(--warm-gray); color: var(--navy); }
+        .account-dropdown i { width: 16px; color: var(--gold); }
+
+        /* Auth modal specific */
+        .auth-tabs { display: flex; gap: 8px; margin-bottom: 22px; background: var(--warm-gray); border-radius: 12px; padding: 5px; }
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-mid);
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.2s, color 0.2s;
+        }
+        .auth-tab.active { background: var(--white); color: var(--navy); box-shadow: 0 2px 8px rgba(10,31,68,0.10); }
+        .auth-panel { display: none; }
+        .auth-panel.active { display: block; }
+        .auth-error {
+            display: none;
+            background: #FDECEC;
+            color: #B42318;
+            border: 1px solid #F5C2C0;
+            border-radius: 9px;
+            padding: 10px 14px;
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+        .auth-error.show { display: block; }
+        .auth-or-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 16px 0;
+            color: var(--text-light);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .auth-or-divider::before, .auth-or-divider::after { content: ''; flex: 1; height: 1px; background: var(--warm-gray); }
+        .auth-google-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 1.5px solid #DDD8D0;
+            border-radius: 10px;
+            background: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .auth-google-btn:hover { border-color: var(--gold); background: var(--warm-gray); }
+        .auth-google-btn img { width: 18px; height: 18px; }
+        .auth-submit-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 14px;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .auth-submit-btn[disabled] { opacity: 0.65; cursor: not-allowed; }
+        .auth-switch-line { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-mid); }
+        .auth-switch-line a { color: var(--gold); font-weight: 600; text-decoration: none; cursor: pointer; }
+        .auth-switch-line a:hover { text-decoration: underline; }
+        .auth-free-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(200,150,42,0.10);
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .nav-auth { gap: 8px; }
+            .nav-signin-link { display: none; }
+        }
+
     </style>
 </head>
 <body>
@@ -1650,6 +1834,32 @@
         <li><a href="#worldcup2026">World Cup 2026</a></li>
         <li><a href="#pricing">Work With Us</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+        <li>
+            <div class="nav-auth">
+                <!-- Shown when no one is signed in -->
+                <div class="nav-when-signed-out">
+                    <a href="#" class="nav-signin-link" onclick="openAuthModal('signin'); return false;">Sign In</a>
+                    <a href="#" class="nav-cta" onclick="openAuthModal('signup'); return false;"><i class="fas fa-user-plus" style="margin-right:6px;"></i>Create Free Account</a>
+                </div>
+                <!-- Shown once signed in -->
+                <div class="nav-when-signed-in nav-account-wrap">
+                    <div class="nav-account-pill" id="navAccountPill" onclick="toggleAccountDropdown()">
+                        <div class="nav-account-avatar" id="navAccountAvatar">?</div>
+                        <span id="navAccountName">Account</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="account-dropdown" id="accountDropdown">
+                        <div class="account-dropdown-header">
+                            <strong id="dropdownDisplayName">Welcome</strong>
+                            <span id="dropdownEmail"></span>
+                        </div>
+                        <a href="#contact"><i class="fas fa-comment-dots"></i> Contact Us</a>
+                        <a href="#books"><i class="fas fa-book"></i> Browse Books</a>
+                        <button onclick="signOutUser()"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+                    </div>
+                </div>
+            </div>
+        </li>
     </ul>
 </nav>
 
@@ -1669,7 +1879,8 @@
             <span>Benin</span>
         </div>
         <div class="hero-btns">
-            <a href="#pricing" class="btn-primary">Work With Us</a>
+            <a href="#" class="btn-primary" onclick="openAuthModal('signup'); return false;"><i class="fas fa-user-plus" style="margin-right:8px;"></i>Create Free Account</a>
+            <a href="#pricing" class="btn-outline">Work With Us</a>
             <a href="#books" class="btn-outline">Browse Books</a>
         </div>
     </div>
@@ -3032,6 +3243,214 @@
 <!-- ── TOAST NOTIFICATION ─────────────────────────────────────── -->
 <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Message sent!</span></div>
 
+<!-- ══════════════════════════════════════════════════════════════
+     ACCOUNT MODAL — Sign Up / Sign In (powered by Firebase Auth, free tier)
+══════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="authModal">
+    <div class="modal">
+        <button class="modal-close" onclick="closeAuthModal()">✕</button>
+
+        <div class="auth-free-badge"><i class="fas fa-bolt"></i> 100% Free Account</div>
+
+        <div class="auth-tabs">
+            <button class="auth-tab active" id="tabSignup" onclick="switchAuthTab('signup')">Create Account</button>
+            <button class="auth-tab" id="tabSignin" onclick="switchAuthTab('signin')">Sign In</button>
+        </div>
+
+        <div class="auth-error" id="authError"></div>
+
+        <!-- SIGN UP PANEL -->
+        <div class="auth-panel active" id="panelSignup">
+            <h2>Create Your Free Account</h2>
+            <p>Join Fad Nao Global to track orders, save your favorite books, and get publishing &amp; trade updates first — at no cost.</p>
+
+            <button class="auth-google-btn" onclick="signInWithGoogle()">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                Continue with Google
+            </button>
+            <div class="auth-or-divider">or sign up with email</div>
+
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-row" style="margin-bottom:12px;">
+                    <input type="text" class="modal-input" id="signupName" placeholder="Full name" required style="margin-bottom:0;">
+                </div>
+                <input type="email" class="modal-input" id="signupEmail" placeholder="Email address" required>
+                <input type="password" class="modal-input" id="signupPassword" placeholder="Create a password (6+ characters)" minlength="6" required>
+                <button type="submit" class="btn-primary auth-submit-btn" id="signupSubmitBtn">
+                    <i class="fas fa-user-plus"></i> Create Free Account
+                </button>
+            </form>
+            <p class="auth-switch-line">Already have an account? <a onclick="switchAuthTab('signin')">Sign in</a></p>
+        </div>
+
+        <!-- SIGN IN PANEL -->
+        <div class="auth-panel" id="panelSignin">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your free Fad Nao Global account.</p>
+
+            <button class="auth-google-btn" onclick="signInWithGoogle()">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                Continue with Google
+            </button>
+            <div class="auth-or-divider">or sign in with email</div>
+
+            <form id="signinForm" onsubmit="handleSignin(event)">
+                <input type="email" class="modal-input" id="signinEmail" placeholder="Email address" required>
+                <input type="password" class="modal-input" id="signinPassword" placeholder="Password" required>
+                <button type="submit" class="btn-primary auth-submit-btn" id="signinSubmitBtn">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+            <p class="auth-switch-line"><a onclick="handlePasswordReset()">Forgot your password?</a></p>
+            <p class="auth-switch-line">Don't have an account? <a onclick="switchAuthTab('signup')">Create one free</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FIREBASE AUTHENTICATION + ANALYTICS (free tier — no backend server required)
+     Connected to the "fadnaoglobal" Firebase project.
+══════════════════════════════════════════════════════════════ -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+    import {
+        getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+        signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider,
+        signInWithPopup, sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBN_1KRCazTHDvE-DifkZFQRbN3FyACId4",
+        authDomain: "fadnaoglobal.firebaseapp.com",
+        projectId: "fadnaoglobal",
+        storageBucket: "fadnaoglobal.firebasestorage.app",
+        messagingSenderId: "231361307362",
+        appId: "1:231361307362:web:f3d5438b57b972e5fe34bb",
+        measurementId: "G-8QYL95LFSS"
+    };
+
+    const firebaseApp = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(firebaseApp);
+    const auth = getAuth(firebaseApp);
+    const googleProvider = new GoogleAuthProvider();
+
+    function showAuthError(message) {
+        const el = document.getElementById('authError');
+        el.textContent = message;
+        el.classList.add('show');
+    }
+    function clearAuthError() {
+        const el = document.getElementById('authError');
+        el.classList.remove('show');
+        el.textContent = '';
+    }
+    function friendlyAuthMessage(error) {
+        const code = error && error.code ? error.code : '';
+        if (code.includes('email-already-in-use')) return 'That email already has an account — try signing in instead.';
+        if (code.includes('invalid-email')) return 'Please enter a valid email address.';
+        if (code.includes('weak-password')) return 'Password should be at least 6 characters.';
+        if (code.includes('user-not-found') || code.includes('wrong-password') || code.includes('invalid-credential')) return 'Incorrect email or password.';
+        if (code.includes('too-many-requests')) return 'Too many attempts. Please wait a moment and try again.';
+        if (code.includes('popup-closed-by-user')) return '';
+        if (code.includes('unauthorized-domain')) return 'This domain isn\'t authorized yet in Firebase Console → Authentication → Settings → Authorized domains.';
+        if (code.includes('operation-not-allowed')) return 'This sign-in method isn\'t enabled yet in Firebase Console → Authentication → Sign-in method.';
+        return 'Something went wrong. Please try again.';
+    }
+
+    window.handleSignup = async function (e) {
+        e.preventDefault();
+        clearAuthError();
+        const name = document.getElementById('signupName').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const password = document.getElementById('signupPassword').value;
+        const btn = document.getElementById('signupSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account…';
+        try {
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            if (name) await updateProfile(cred.user, { displayName: name });
+            closeAuthModal();
+            showToast('Welcome, ' + (name || 'friend') + '! Your free account is ready.');
+        } catch (err) {
+            const msg = friendlyAuthMessage(err);
+            if (msg) showAuthError(msg);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Free Account';
+        }
+    };
+
+    window.handleSignin = async function (e) {
+        e.preventDefault();
+        clearAuthError();
+        const email = document.getElementById('signinEmail').value.trim();
+        const password = document.getElementById('signinPassword').value;
+        const btn = document.getElementById('signinSubmitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in…';
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            closeAuthModal();
+            showToast('Signed in successfully!');
+        } catch (err) {
+            const msg = friendlyAuthMessage(err);
+            if (msg) showAuthError(msg);
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+        }
+    };
+
+    window.signInWithGoogle = async function () {
+        clearAuthError();
+        try {
+            await signInWithPopup(auth, googleProvider);
+            closeAuthModal();
+            showToast('Signed in with Google!');
+        } catch (err) {
+            const msg = friendlyAuthMessage(err);
+            if (msg) showAuthError(msg);
+        }
+    };
+
+    window.handlePasswordReset = async function () {
+        clearAuthError();
+        const email = document.getElementById('signinEmail').value.trim();
+        if (!email) { showAuthError('Enter your email above first, then click "Forgot your password?" again.'); return; }
+        try {
+            await sendPasswordResetEmail(auth, email);
+            showToast('Password reset email sent to ' + email);
+        } catch (err) {
+            const msg = friendlyAuthMessage(err);
+            if (msg) showAuthError(msg);
+        }
+    };
+
+    window.signOutUser = async function () {
+        try {
+            await signOut(auth);
+            document.getElementById('accountDropdown').classList.remove('open');
+            showToast('You have been signed out.');
+        } catch (err) { /* no-op */ }
+    };
+
+    onAuthStateChanged(auth, (user) => {
+        const body = document.body;
+        if (user) {
+            body.classList.add('is-signed-in');
+            const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'Account');
+            const initial = displayName.trim().charAt(0).toUpperCase() || 'A';
+            document.getElementById('navAccountName').textContent = displayName;
+            document.getElementById('navAccountAvatar').textContent = initial;
+            document.getElementById('dropdownDisplayName').textContent = displayName;
+            document.getElementById('dropdownEmail').textContent = user.email || '';
+        } else {
+            body.classList.remove('is-signed-in');
+        }
+    });
+</script>
+
 <!-- ── FACEBOOK SDK (for Like/Follow Page Plugin) ─────────────── -->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous"
@@ -3172,6 +3591,44 @@ function closeModal() {
 }
 document.getElementById('exitModal').addEventListener('click', e => {
     if (e.target === document.getElementById('exitModal')) closeModal();
+});
+
+// ── ACCOUNT / AUTH MODAL ─────────────────────────────────────────
+function openAuthModal(tab) {
+    document.getElementById('authModal').classList.add('active');
+    switchAuthTab(tab || 'signup');
+    document.getElementById('navLinks').classList.remove('open');
+}
+function closeAuthModal() {
+    document.getElementById('authModal').classList.remove('active');
+    const err = document.getElementById('authError');
+    err.classList.remove('show');
+    err.textContent = '';
+}
+document.getElementById('authModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('authModal')) closeAuthModal();
+});
+function switchAuthTab(tab) {
+    const err = document.getElementById('authError');
+    err.classList.remove('show');
+    err.textContent = '';
+    const isSignup = tab === 'signup';
+    document.getElementById('tabSignup').classList.toggle('active', isSignup);
+    document.getElementById('tabSignin').classList.toggle('active', !isSignup);
+    document.getElementById('panelSignup').classList.toggle('active', isSignup);
+    document.getElementById('panelSignin').classList.toggle('active', !isSignup);
+}
+
+// ── ACCOUNT DROPDOWN (nav, once signed in) ───────────────────────
+function toggleAccountDropdown() {
+    document.getElementById('accountDropdown').classList.toggle('open');
+}
+document.addEventListener('click', e => {
+    const wrap = document.querySelector('.nav-account-wrap');
+    const dropdown = document.getElementById('accountDropdown');
+    if (wrap && dropdown && !wrap.contains(e.target)) {
+        dropdown.classList.remove('open');
+    }
 });
 
 // ── TOAST HELPER ─────────────────────────────────────────────────
