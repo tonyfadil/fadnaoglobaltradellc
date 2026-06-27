@@ -288,7 +288,6 @@
         #booksGrid {
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
-            perspective: 1800px;
         }
         .card {
             background: var(--white);
@@ -343,6 +342,7 @@
             flex-direction: column;
             transition: box-shadow 0.35s, transform 0.35s;
             transform-style: preserve-3d;
+            perspective: 1000px;
             will-change: transform;
         }
         .book-card:hover {
