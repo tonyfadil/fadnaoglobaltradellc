@@ -1792,6 +1792,151 @@
             .nav-signin-link { display: none; }
         }
 
+        /* ── HERO EYEBROW (now clickable) ───────────────────────── */
+        .hero-eyebrow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200,150,42,0.18);
+            border: 1px solid rgba(200,150,42,0.5);
+            color: var(--gold-light);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 16px 6px 18px;
+            border-radius: 30px;
+            margin-bottom: 24px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-eyebrow-btn:hover {
+            background: rgba(200,150,42,0.28);
+            border-color: rgba(232,184,75,0.8);
+            transform: translateY(-1px);
+        }
+        .hero-eyebrow-btn i { font-size: 11px; transition: transform 0.2s; }
+        .hero-eyebrow-btn:hover i { transform: translateX(2px); }
+
+        /* ── BRIDGE MODAL (NYC ⟷ Benin culture showcase) ────────── */
+        .bridge-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.65);
+            z-index: 8000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .bridge-modal-overlay.active { display: flex; }
+        .bridge-modal {
+            background: var(--ivory);
+            border-radius: 24px;
+            max-width: 980px;
+            width: 100%;
+            max-height: 92vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+        .bridge-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--navy);
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .bridge-modal-header {
+            text-align: center;
+            padding: 44px 40px 28px;
+        }
+        .bridge-modal-header .eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .bridge-modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--navy);
+        }
+        .bridge-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+        .bridge-panel { display: flex; flex-direction: column; }
+        .bridge-panel-photo {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            display: block;
+            background: var(--warm-gray);
+        }
+        .bridge-panel-body { padding: 26px 30px 32px; flex: 1; }
+        .bridge-panel-flag { font-size: 22px; margin-bottom: 8px; display: block; }
+        .bridge-panel-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+        .bridge-panel-body > p {
+            font-size: 14px;
+            color: var(--text-mid);
+            margin-bottom: 16px;
+            line-height: 1.65;
+        }
+        .bridge-facts { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+        .bridge-facts li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 13.5px;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+        .bridge-facts li i { color: var(--gold); margin-top: 2px; font-size: 12px; }
+        .bridge-panel.benin-panel { background: rgba(200,150,42,0.05); }
+        .bridge-connector {
+            padding: 32px 40px 40px;
+            border-top: 1px solid rgba(10,31,68,0.08);
+            text-align: center;
+        }
+        .bridge-connector i { color: var(--gold); font-size: 20px; margin-bottom: 12px; display: block; }
+        .bridge-connector p {
+            max-width: 640px;
+            margin: 0 auto;
+            font-size: 15px;
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+        .bridge-connector .signature {
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        @media (max-width: 760px) {
+            .bridge-split { grid-template-columns: 1fr; }
+            .bridge-modal-header { padding: 38px 24px 22px; }
+            .bridge-connector { padding: 26px 24px 32px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1868,7 +2013,7 @@
     <div class="hero-glow"></div>
     <div class="hero-inner">
         <a href="#"><img src="fadnaoglo.png" alt="Fad Nao Global Trade LLC" class="logo"></a>
-        <div class="hero-eyebrow">New York · Benin · Global</div>
+        <button class="hero-eyebrow-btn" onclick="openBridgeModal()">New York · Benin · Global <i class="fas fa-arrow-right"></i></button>
         <h1>Trade, Publish &amp; <span>Grow</span><br>Across Borders</h1>
         <p>International trade, professional publishing, IT consulting, and French-English translation — all under one global roof.</p>
         <div class="hero-flags">
@@ -3262,6 +3407,64 @@
     </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════════════════
+     BRIDGE MODAL — New York · Benin · Global culture showcase
+     Replace the photo URLs below with your own hosted images
+     (same GitHub raw-content pattern used for the book covers).
+══════════════════════════════════════════════════════════════ -->
+<div class="bridge-modal-overlay" id="bridgeModal">
+    <div class="bridge-modal">
+        <button class="bridge-modal-close" onclick="closeBridgeModal()">✕</button>
+
+        <div class="bridge-modal-header">
+            <div class="eyebrow">Our Story, In Two Cities</div>
+            <h2>A Bridge Between Two Worlds</h2>
+        </div>
+
+        <div class="bridge-split">
+            <!-- NEW YORK PANEL -->
+            <div class="bridge-panel">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/new-york-skyline.jpg"
+                     alt="New York City skyline" class="bridge-panel-photo"
+                     onerror="this.style.display='none';">
+                <div class="bridge-panel-body">
+                    <span class="bridge-panel-flag">🇺🇸</span>
+                    <h3>New York, United States</h3>
+                    <p>Our home base — where Fad Nao Global Trade LLC was founded, and where international deals, publishing contracts, and client relationships come together.</p>
+                    <ul class="bridge-facts">
+                        <li><i class="fas fa-landmark"></i> Headquarters of our publishing, IT consulting, and trade operations</li>
+                        <li><i class="fas fa-globe-americas"></i> A true global crossroads — one of the most diverse cities on earth</li>
+                        <li><i class="fas fa-handshake"></i> Where we connect authors, entrepreneurs, and businesses to worldwide markets</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- BENIN PANEL -->
+            <div class="bridge-panel benin-panel">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/benin-culture.jpg"
+                     alt="Benin Republic culture" class="bridge-panel-photo"
+                     onerror="this.style.display='none';">
+                <div class="bridge-panel-body">
+                    <span class="bridge-panel-flag">🇧🇯</span>
+                    <h3>Benin Republic, West Africa</h3>
+                    <p>Our roots — a small West African nation with an extraordinary cultural legacy, and the heart of our trade network and family ties.</p>
+                    <ul class="bridge-facts">
+                        <li><i class="fas fa-mask"></i> Widely regarded as the birthplace of Vodun (Voodoo), celebrated each January at the Vodun Festival in Ouidah</li>
+                        <li><i class="fas fa-crown"></i> Home to the historic Kingdom of Dahomey and the Royal Palaces of Abomey, a UNESCO World Heritage Site</li>
+                        <li><i class="fas fa-music"></i> Rich in textiles, drumming, and storytelling traditions passed down for generations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bridge-connector">
+            <i class="fas fa-link"></i>
+            <p>Two cities, one mission. From the trading floors and publishing houses of New York to the markets and traditions of Benin, Fad Nao Global Trade LLC exists to make geography irrelevant — helping authors get published, entrepreneurs source products, and businesses communicate across borders, all while staying rooted in the culture that shaped us.</p>
+            <p class="signature">— M. Fadil, Founder · Fad Nao Global Trade LLC</p>
+        </div>
+    </div>
+</div>
+
 <!-- ── TOAST NOTIFICATION ─────────────────────────────────────── -->
 <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Message sent!</span></div>
 
@@ -3640,6 +3843,22 @@ function switchAuthTab(tab) {
     document.getElementById('panelSignup').classList.toggle('active', isSignup);
     document.getElementById('panelSignin').classList.toggle('active', !isSignup);
 }
+
+// ── BRIDGE MODAL (NYC · Benin · Global culture showcase) ────────
+function openBridgeModal() {
+    document.getElementById('bridgeModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeBridgeModal() {
+    document.getElementById('bridgeModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.getElementById('bridgeModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('bridgeModal')) closeBridgeModal();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeBridgeModal();
+});
 
 // ── ACCOUNT DROPDOWN (nav, once signed in) ───────────────────────
 function toggleAccountDropdown() {
