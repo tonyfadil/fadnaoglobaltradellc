@@ -365,6 +365,118 @@
             pointer-events: none;
         }
         .book-card:hover .book-cover-wrap::after { transform: translateX(120%); }
+        .affiliate-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--gold);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            z-index: 2;
+        }
+
+        /* ── AMAZON AFFILIATE VALUE BANNER ─────────────────────── */
+        .affiliate-banner {
+            background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 60%, #1A3A6A 100%);
+            color: var(--white);
+            padding: 70px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .affiliate-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,150,42,0.18), transparent 70%);
+            pointer-events: none;
+        }
+        .affiliate-banner-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .affiliate-banner-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: rgba(200,150,42,0.16);
+            border: 1px solid rgba(200,150,42,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--gold-light);
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease;
+        }
+        .affiliate-banner:hover .affiliate-banner-icon {
+            transform: rotateY(18deg) rotateX(8deg) scale(1.08);
+        }
+        .affiliate-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        .affiliate-banner > .affiliate-banner-inner > p {
+            color: rgba(255,255,255,0.82);
+            font-size: clamp(0.95rem, 1.6vw, 1.08rem);
+            margin-bottom: 32px;
+        }
+        .affiliate-banner-points {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .affiliate-point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 12px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        .affiliate-point i { color: var(--gold-light); font-size: 16px; flex-shrink: 0; }
+        .affiliate-point:hover {
+            transform: translateY(-4px) rotateX(6deg);
+            background: rgba(200,150,42,0.14);
+            border-color: rgba(200,150,42,0.5);
+        }
+        .affiliate-disclosure {
+            margin-top: 28px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 640px) {
+            .affiliate-banner { padding: 50px 18px; }
+            .affiliate-point { width: 100%; justify-content: flex-start; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .affiliate-banner-icon, .affiliate-point { transition: none; }
+            .affiliate-banner:hover .affiliate-banner-icon { transform: none; }
+            .affiliate-point:hover { transform: none; }
+        }
+
         .book-cover {
             width: 100%;
             aspect-ratio: 2 / 3;
@@ -421,6 +533,71 @@
             text-align: center;
         }
         .book-btn:hover { background: var(--gold); }
+
+        /* ── DEAL CARDS (Today's Deals — non-book products) ───── */
+        .deal-card {
+            background: var(--white);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(10,31,68,0.07);
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.35s, transform 0.35s;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+        }
+        .deal-card:hover {
+            box-shadow: 0 26px 50px -10px rgba(10,31,68,0.35), 0 8px 20px rgba(200,150,42,0.15);
+            transform: translateY(-10px) rotateX(4deg) rotateY(-3deg) scale(1.025);
+            z-index: 2;
+        }
+        .deal-icon {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background: linear-gradient(145deg, var(--navy), var(--navy-mid));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--gold-light);
+            position: relative;
+            overflow: hidden;
+        }
+        .deal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+        .deal-card:hover .deal-img { transform: scale(1.05); }
+        .deal-card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .deal-genre {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+        .deal-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+        .deal-card p { font-size: 12px; color: var(--text-mid); margin-bottom: 10px; line-height: 1.5; flex: 1; }
+        @media (prefers-reduced-motion: reduce) {
+            .deal-card:hover { transform: translateY(-6px); }
+        }
 
         /* ── BOOK SEARCH BAR ─────────────────────────────── */
         .book-search-wrap {
@@ -1012,6 +1189,14 @@
         .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
         .footer-col a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
         .footer-col a:hover { color: var(--white); }
+        .footer-disclosure {
+            font-size: 12px;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.6;
+            margin-top: 36px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 24px;
@@ -1279,333 +1464,10 @@
         }
         .milestone-banner .btn-navy:hover { background: var(--navy-bright); transform: translateY(-2px); }
 
-        /* ── FIFA WORLD CUP 2026 SECTION ─────────────────────── */
-        .wc-section {
-            background: linear-gradient(160deg, #06142E 0%, var(--navy) 45%, var(--navy-mid) 100%);
-            color: var(--white);
-            padding: 90px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .wc-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 40% at 50% 0%, rgba(200,150,42,0.14), transparent 70%),
-                url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='26' cy='26' r='10' fill='none' stroke='%23C8962A' stroke-opacity='0.07' stroke-width='1.5'/%3E%3C/svg%3E") repeat;
-            pointer-events: none;
-        }
-        .wc-inner { max-width: 1200px; margin: auto; position: relative; z-index: 1; }
-        .wc-hero { text-align: center; margin-bottom: 56px; }
-        .wc-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(200,150,42,0.16);
-            border: 1px solid rgba(200,150,42,0.5);
-            color: var(--gold-light);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 7px 20px;
-            border-radius: 30px;
-            margin-bottom: 22px;
-        }
-        .wc-hero h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4.5vw, 3.4rem);
-            font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-        .wc-hero h2 span { color: var(--gold-light); }
-        .wc-hero > p {
-            color: rgba(255,255,255,0.8);
-            font-size: clamp(1rem, 2vw, 1.15rem);
-            max-width: 680px;
-            margin: 0 auto 28px;
-        }
-        .wc-hosts {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 22px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .wc-host {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.16);
-            border-radius: 12px;
-            padding: 10px 18px;
-            font-weight: 600;
-            font-size: 15px;
-        }
-        .wc-host img { width: 34px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
-        .wc-facts {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-        .wc-fact {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.14);
-            border-radius: 14px;
-            padding: 16px 26px;
-            min-width: 130px;
-        }
-        .wc-fact .num {
-            font-family: 'Playfair Display', serif;
-            font-size: 30px;
-            font-weight: 900;
-            color: var(--gold-light);
-            display: block;
-            line-height: 1.1;
-        }
-        .wc-fact .lbl {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.4px;
-            color: rgba(255,255,255,0.65);
-            font-weight: 600;
-        }
-        .wc-conf { margin-bottom: 36px; }
-        .wc-conf-head {
-            display: flex;
-            align-items: baseline;
-            gap: 14px;
-            margin-bottom: 16px;
-            border-bottom: 1px solid rgba(255,255,255,0.12);
-            padding-bottom: 10px;
-        }
-        .wc-conf-head h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 21px;
-            font-weight: 700;
-            color: var(--gold-light);
-        }
-        .wc-conf-head .count {
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.55);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .wc-teams {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-            gap: 10px;
-        }
-        .wc-team {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 10px;
-            padding: 10px 12px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background 0.25s, transform 0.25s, border-color 0.25s;
-        }
-        .wc-team:hover {
-            background: rgba(200,150,42,0.16);
-            border-color: rgba(200,150,42,0.55);
-            transform: translateY(-3px);
-        }
-        .wc-team img {
-            width: 28px;
-            height: 20px;
-            object-fit: cover;
-            border-radius: 3px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-            flex-shrink: 0;
-        }
-        .wc-team .tag {
-            margin-left: auto;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            background: rgba(200,150,42,0.16);
-            border-radius: 20px;
-            padding: 2px 8px;
-            flex-shrink: 0;
-        }
-        .wc-footnote {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-        }
-        @media (max-width: 640px) {
-            .wc-section { padding: 64px 16px; }
-            .wc-teams { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-            .wc-team .tag { display: none; }
-        }
         @media (prefers-reduced-motion: reduce) {
             .milestone-banner { animation: none; }
-            .wc-team:hover { transform: none; }
             .book-card:hover { transform: translateY(-6px); }
             .hero img.logo:hover { transform: none; }
-        }
-
-        /* ══════════════════════════════════════════════════
-           LIVE TRAFFIC WIDGET
-        ══════════════════════════════════════════════════ */
-
-        /* Visitor counter pill — top-right, below nav */
-        #visitorCounter {
-            position: fixed;
-            top: 80px;
-            right: 20px;
-            z-index: 990;
-            background: rgba(10, 31, 68, 0.93);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(200, 150, 42, 0.45);
-            border-radius: 50px;
-            padding: 8px 16px 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            cursor: default;
-            user-select: none;
-            transition: border-color 0.3s;
-        }
-        #visitorCounter:hover { border-color: rgba(200,150,42,0.85); }
-
-        .vc-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4ade80;
-            flex-shrink: 0;
-            animation: vcPulse 1.8s ease-in-out infinite;
-        }
-        @keyframes vcPulse {
-            0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.75); }
-            70%  { box-shadow: 0 0 0 7px rgba(74,222,128,0); }
-            100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
-        }
-        .vc-avatars {
-            display: flex;
-            align-items: center;
-        }
-        .vc-avatar {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            border: 2px solid rgba(10,31,68,0.93);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            margin-left: -6px;
-            flex-shrink: 0;
-            transition: transform 0.2s;
-            position: relative;
-        }
-        .vc-avatar:first-child { margin-left: 0; }
-        .vc-avatar:hover { transform: scale(1.2); z-index: 1; }
-        .vc-label {
-            color: rgba(255,255,255,0.85);
-            font-weight: 500;
-            margin-left: 4px;
-        }
-        #vcCount {
-            color: var(--gold-light);
-            font-size: 15px;
-            font-weight: 700;
-            display: inline-block;
-        }
-
-        /* Notification bubbles — bottom-left */
-        #liveTraffic {
-            position: fixed;
-            bottom: 90px;
-            left: 20px;
-            z-index: 990;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            pointer-events: none;
-        }
-        .traffic-bubble {
-            background: rgba(10, 31, 68, 0.93);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(200, 150, 42, 0.4);
-            border-radius: 50px;
-            padding: 9px 16px 9px 10px;
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 4px 22px rgba(0,0,0,0.38);
-            animation: bubbleIn 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards;
-            pointer-events: auto;
-            cursor: default;
-            max-width: 250px;
-            white-space: nowrap;
-        }
-        .traffic-bubble.bubble-out {
-            animation: bubbleOut 0.45s ease forwards;
-        }
-        @keyframes bubbleIn {
-            from { opacity: 0; transform: translateX(-22px) scale(0.88); }
-            to   { opacity: 1; transform: translateX(0) scale(1); }
-        }
-        @keyframes bubbleOut {
-            from { opacity: 1; transform: translateX(0) scale(1); }
-            to   { opacity: 0; transform: translateX(-18px) scale(0.9); }
-        }
-        .traffic-live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #4ade80;
-            flex-shrink: 0;
-            animation: vcPulse 1.8s ease-in-out infinite;
-        }
-        .traffic-flag {
-            font-size: 17px;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-        .traffic-text {
-            color: rgba(255,255,255,0.9);
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .traffic-text strong { color: var(--gold-light); }
-
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-            #liveTraffic { bottom: 80px; left: 10px; }
-            #visitorCounter { top: 76px; right: 10px; font-size: 11px; padding: 6px 11px 6px 9px; }
-            .traffic-bubble { font-size: 11px; padding: 7px 12px 7px 9px; max-width: 195px; }
-            .traffic-flag { font-size: 14px; }
-            #vcCount { font-size: 13px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .vc-dot, .traffic-live-dot { animation: none; }
-            .traffic-bubble, .traffic-bubble.bubble-out { animation: none; opacity: 1; transform: none; }
         }
 
         /* ── ACCOUNT / AUTH UI ──────────────────────────────────── */
@@ -1944,23 +1806,9 @@
 <!-- Reading progress bar -->
 <div class="reading-progress" id="readingProgress"></div>
 
-<!-- ══════════════════════════════════════════════════
-     LIVE TRAFFIC WIDGET
-══════════════════════════════════════════════════ -->
-
-<!-- Visitor counter pill (fixed, top-right) -->
-<div id="visitorCounter" title="People currently on this site">
-    <div class="vc-dot"></div>
-    <div class="vc-avatars" id="vcAvatars"></div>
-    <span class="vc-label"><strong id="vcCount">—</strong>&nbsp;viewing now</span>
-</div>
-
-<!-- Live visitor notification bubbles (fixed, bottom-left) -->
-<div id="liveTraffic"></div>
-
 <!-- ── ANNOUNCEMENT BAR ──────────────────────────────────────── -->
 <div class="announce-bar" id="announceBar">
-    🏆 <strong>Milestone:</strong> 100+ books published — thank you for believing in our services. &nbsp;|&nbsp; ⚽ <a href="#worldcup2026">Celebrate FIFA World Cup 2026 with us →</a>
+    🏆 <strong>Milestone:</strong> 100+ books published — thank you for believing in our services. &nbsp;|&nbsp; 🛍️ <a href="#books">Official Amazon Affiliate — daily best-sellers & new releases at a discount →</a>
     &nbsp;<span style="cursor:pointer;margin-left:8px;" onclick="document.getElementById('announceBar').remove()">✕</span>
 </div>
 
@@ -1975,8 +1823,8 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#books">Books</a></li>
+        <li><a href="#deals">Deals</a></li>
         <li><a href="#community">Community</a></li>
-        <li><a href="#worldcup2026">World Cup 2026</a></li>
         <li><a href="#pricing">Work With Us</a></li>
         <li><a href="#contact" class="nav-cta">Contact Us</a></li>
         <li>
@@ -2054,114 +1902,6 @@
     </div>
 </section>
 
-<!-- ── FIFA WORLD CUP 2026 ─────────────────────────────────── -->
-<section class="wc-section" id="worldcup2026">
-    <div class="wc-inner">
-        <div class="wc-hero">
-            <div class="wc-eyebrow"><i class="fas fa-futbol"></i> June 11 – July 19, 2026</div>
-            <h2>FIFA World Cup <span>2026</span></h2>
-            <p>The biggest World Cup in history has arrived — 48 nations, 104 matches, three host countries. From our home in New York to our partners in Benin, we celebrate the beautiful game with the world.</p>
-            <div class="wc-hosts">
-                <div class="wc-host"><img src="https://flagcdn.com/w80/us.png" alt="United States flag"> United States</div>
-                <div class="wc-host"><img src="https://flagcdn.com/w80/ca.png" alt="Canada flag"> Canada</div>
-                <div class="wc-host"><img src="https://flagcdn.com/w80/mx.png" alt="Mexico flag"> Mexico</div>
-            </div>
-            <div class="wc-facts">
-                <div class="wc-fact"><span class="num">48</span><span class="lbl">Teams</span></div>
-                <div class="wc-fact"><span class="num">104</span><span class="lbl">Matches</span></div>
-                <div class="wc-fact"><span class="num">16</span><span class="lbl">Host Cities</span></div>
-                <div class="wc-fact"><span class="num">3</span><span class="lbl">Host Nations</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>Europe — UEFA</h3><span class="count">16 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/at.png" alt="Austria flag" loading="lazy"><span>Austria</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/be.png" alt="Belgium flag" loading="lazy"><span>Belgium</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ba.png" alt="Bosnia &amp; Herzegovina flag" loading="lazy"><span>Bosnia &amp; Herzegovina</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/hr.png" alt="Croatia flag" loading="lazy"><span>Croatia</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/cz.png" alt="Czechia flag" loading="lazy"><span>Czechia</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/gb-eng.png" alt="England flag" loading="lazy"><span>England</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/fr.png" alt="France flag" loading="lazy"><span>France</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/de.png" alt="Germany flag" loading="lazy"><span>Germany</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/nl.png" alt="Netherlands flag" loading="lazy"><span>Netherlands</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/no.png" alt="Norway flag" loading="lazy"><span>Norway</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/pt.png" alt="Portugal flag" loading="lazy"><span>Portugal</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/gb-sct.png" alt="Scotland flag" loading="lazy"><span>Scotland</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/es.png" alt="Spain flag" loading="lazy"><span>Spain</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/se.png" alt="Sweden flag" loading="lazy"><span>Sweden</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ch.png" alt="Switzerland flag" loading="lazy"><span>Switzerland</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/tr.png" alt="Türkiye flag" loading="lazy"><span>Türkiye</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>South America — CONMEBOL</h3><span class="count">6 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ar.png" alt="Argentina flag" loading="lazy"><span>Argentina</span><span class="tag">Holders</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/br.png" alt="Brazil flag" loading="lazy"><span>Brazil</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/co.png" alt="Colombia flag" loading="lazy"><span>Colombia</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ec.png" alt="Ecuador flag" loading="lazy"><span>Ecuador</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/py.png" alt="Paraguay flag" loading="lazy"><span>Paraguay</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/uy.png" alt="Uruguay flag" loading="lazy"><span>Uruguay</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>North &amp; Central America — CONCACAF</h3><span class="count">6 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ca.png" alt="Canada flag" loading="lazy"><span>Canada</span><span class="tag">Host</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/cw.png" alt="Curaçao flag" loading="lazy"><span>Curaçao</span><span class="tag">Debut</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ht.png" alt="Haiti flag" loading="lazy"><span>Haiti</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/mx.png" alt="Mexico flag" loading="lazy"><span>Mexico</span><span class="tag">Host</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/pa.png" alt="Panama flag" loading="lazy"><span>Panama</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/us.png" alt="United States flag" loading="lazy"><span>United States</span><span class="tag">Host</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>Africa — CAF</h3><span class="count">10 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/dz.png" alt="Algeria flag" loading="lazy"><span>Algeria</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/cv.png" alt="Cape Verde flag" loading="lazy"><span>Cape Verde</span><span class="tag">Debut</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/cd.png" alt="DR Congo flag" loading="lazy"><span>DR Congo</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/eg.png" alt="Egypt flag" loading="lazy"><span>Egypt</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/gh.png" alt="Ghana flag" loading="lazy"><span>Ghana</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ci.png" alt="Ivory Coast flag" loading="lazy"><span>Ivory Coast</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ma.png" alt="Morocco flag" loading="lazy"><span>Morocco</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/sn.png" alt="Senegal flag" loading="lazy"><span>Senegal</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/za.png" alt="South Africa flag" loading="lazy"><span>South Africa</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/tn.png" alt="Tunisia flag" loading="lazy"><span>Tunisia</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>Asia — AFC</h3><span class="count">9 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/au.png" alt="Australia flag" loading="lazy"><span>Australia</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/ir.png" alt="Iran flag" loading="lazy"><span>Iran</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/iq.png" alt="Iraq flag" loading="lazy"><span>Iraq</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/jp.png" alt="Japan flag" loading="lazy"><span>Japan</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/jo.png" alt="Jordan flag" loading="lazy"><span>Jordan</span><span class="tag">Debut</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/qa.png" alt="Qatar flag" loading="lazy"><span>Qatar</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/sa.png" alt="Saudi Arabia flag" loading="lazy"><span>Saudi Arabia</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/kr.png" alt="South Korea flag" loading="lazy"><span>South Korea</span></div>
-            <div class="wc-team"><img src="https://flagcdn.com/w80/uz.png" alt="Uzbekistan flag" loading="lazy"><span>Uzbekistan</span><span class="tag">Debut</span></div>
-            </div>
-        </div>
-
-        <div class="wc-conf">
-            <div class="wc-conf-head"><h3>Oceania — OFC</h3><span class="count">1 Teams</span></div>
-            <div class="wc-teams">
-            <div class="wc-team"><img src="https://flagcdn.com/w80/nz.png" alt="New Zealand flag" loading="lazy"><span>New Zealand</span></div>
-            </div>
-        </div>
-
-        <p class="wc-footnote">All 48 qualified nations for the 2026 FIFA World Cup, hosted across the United States, Canada &amp; Mexico. The final kicks off July 19, 2026 at MetLife Stadium, New York / New Jersey.</p>
-    </div>
-</section>
-
 <!-- ── SERVICES ──────────────────────────────────────────────── -->
 <section class="section section-alt" id="services">
     <div class="container">
@@ -2206,6 +1946,21 @@
                 <a href="#contact" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
+    </div>
+</section>
+
+<!-- ── AMAZON AFFILIATE VALUE BANNER ───────────────────────────── -->
+<section class="affiliate-banner" id="affiliateBanner">
+    <div class="affiliate-banner-inner">
+        <div class="affiliate-banner-icon"><i class="fab fa-amazon"></i></div>
+        <h2>We Do The Searching, So You Don't Have To</h2>
+        <p>As an official Amazon Affiliate, we track down today's best sellers and freshest new releases — at a discount — and bring them all together on one page. No more digging through Amazon's endless categories to find a deal. We've already done the work for you.</p>
+        <div class="affiliate-banner-points">
+            <div class="affiliate-point"><i class="fas fa-magnifying-glass-dollar"></i><span>Best sellers &amp; new releases, hand-picked daily</span></div>
+            <div class="affiliate-point"><i class="fas fa-tags"></i><span>Discounted pricing, sourced directly from Amazon</span></div>
+            <div class="affiliate-point"><i class="fas fa-layer-group"></i><span>Everything in one place — no endless scrolling</span></div>
+        </div>
+        <p class="affiliate-disclosure">Disclosure: As an Amazon Associate, Fad Nao Global Trade LLC earns from qualifying purchases made through links on this page, at no extra cost to you.</p>
     </div>
 </section>
 
@@ -2903,6 +2658,113 @@
                 </div>
             </div>
 
+            <!-- ══════════════════════════════════════════════════
+                 AMAZON AFFILIATE PICKS — NYT & Amazon Best Sellers
+                 (Not published by Fad Nao — curated affiliate picks)
+            ══════════════════════════════════════════════════ -->
+
+            <!-- ── Affiliate Pick: Political Non-Fiction ── -->
+            <div class="book-card affiliate-pick" data-genre="history">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/REGIME-CHANGE.jpg"
+                     alt="Regime Change cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-landmark"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">History &amp; Politics · NYT Best Seller</div>
+                    <h3>Regime Change: Inside the Imperial Presidency</h3>
+                    <p>An in-depth, widely praised account of a presidency, reported with detail that critics have called exceptional and consequential journalism.</p>
+                    <a href="https://amzn.to/4gI1pZY" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Affiliate Pick: Literary Fiction ── -->
+            <div class="book-card affiliate-pick" data-genre="history">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Theo-of-Golden.jpg"
+                     alt="Theo of Golden cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-portrait"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">Literary Fiction · #1 NYT Best Seller</div>
+                    <h3>Theo of Golden</h3>
+                    <p>A stranger arrives in a small Southern town and begins buying back portraits of its residents — one story, one secret, one quiet act of generosity at a time.</p>
+                    <a href="https://amzn.to/4oOKruZ" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Affiliate Pick: Satirical Fiction ── -->
+            <div class="book-card affiliate-pick" data-genre="romance">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/YESTERYEAR.jpg"
+                     alt="Yesteryear cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-feather"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">Satire · #1 NYT Best Seller</div>
+                    <h3>Yesteryear</h3>
+                    <p>A "tradwife" influencer wakes up in 1855 and must work out whether her new reality is a hoax, a hidden camera show, or something far stranger — a sharp, funny debut.</p>
+                    <a href="https://amzn.to/441Ghq7" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Affiliate Pick: Keepsake Journal ── -->
+            <div class="book-card affiliate-pick" data-genre="history">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/GRANDMAS-STORY.jpg"
+                     alt="Grandma's Story keepsake journal cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-heart"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">Memory &amp; Keepsake Journal</div>
+                    <h3>Grandma's Story: A Memory &amp; Keepsake Journal</h3>
+                    <p>A guided journal designed to help grandmothers record their life's most meaningful memories to pass down to their families — a popular gift for any occasion.</p>
+                    <a href="https://amzn.to/4ak3ckc" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Affiliate Pick: Memoir / Style ── -->
+            <div class="book-card affiliate-pick" data-genre="history">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/THE-LOOK-MICHELLE-OBAMA.jpg"
+                     alt="The Look by Michelle Obama cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-shirt"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">Memoir &amp; Style · #1 NYT Best Seller</div>
+                    <h3>The Look — Michelle Obama</h3>
+                    <p>A personal look at how style and fashion choices shaped a public life, told alongside the stylists and designers behind some of the most memorable looks of the past two decades.</p>
+                    <a href="https://amzn.to/4eOBj5d" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <!-- ── Affiliate Pick: Historical Fiction ── -->
+            <div class="book-card affiliate-pick" data-genre="history">
+                <div class="book-cover-wrap">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/The-Calamity-Club.jpg"
+                     alt="The Calamity Club cover" class="book-cover"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" loading="lazy">
+                <div class="book-cover-placeholder" style="display:none;"><i class="fas fa-people-group"></i></div>
+                <span class="affiliate-badge">Amazon Pick</span>
+                </div>
+                <div class="book-card-body">
+                    <div class="book-genre">Historical Fiction · Instant NYT Best Seller</div>
+                    <h3>The Calamity Club</h3>
+                    <p>Set in Depression-era Mississippi, three women from very different circumstances join forces against the odds in this big-hearted story about friendship and resilience.</p>
+                    <a href="https://amzn.to/4gbmFXV" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
         </div>
 
         <div class="no-results-msg" id="noResultsMsg">
@@ -2913,6 +2775,154 @@
         <div style="text-align:center; margin-top:40px;">
             <p style="color:var(--text-mid); margin-bottom:16px;">Are you an author? We can publish and distribute your book globally.</p>
             <a href="#pricing" class="btn-primary">See Publishing Packages</a>
+        </div>
+    </div>
+</section>
+
+<!-- ── TODAY'S DEALS (Amazon Affiliate Products) ───────────────── -->
+<section class="section section-alt" id="deals">
+    <div class="container">
+        <div class="section-eyebrow">Amazon Affiliate Picks</div>
+        <h2 class="section-title">Today's Deals</h2>
+        <p class="section-sub">New releases and best sellers across home, kitchen, and outdoor gear — curated daily so you don't have to dig for the discount.</p>
+
+        <div class="cards" id="dealsGrid">
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Pocket-Hose-Ballistic-50FT-Expandable.jpg"
+                     alt="Pocket Hose Ballistic 50FT Expandable Garden Hose" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-water" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Home &amp; Garden</div>
+                    <h3>Pocket Hose Ballistic 50FT Expandable Garden Hose</h3>
+                    <p>Pivot swivel connector, anti-burst sleeve reinforced with bulletproof fiber, lightweight, no-kink, compact, UV-protected.</p>
+                    <a href="https://amzn.to/4wz1fcn" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Supports-200lbs-Heavy-Duty-Moving-Bags.jpg"
+                     alt="Heavy Duty Moving Storage Bags" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-box-open" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Home &amp; Storage</div>
+                    <h3>Heavy Duty Moving Storage Bags (8-Pack)</h3>
+                    <p>Supports up to 200 lbs with strong zippers and wrap-around handles — a sturdy, water-resistant alternative to cardboard moving boxes.</p>
+                    <a href="https://amzn.to/4vzI4yN" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Ring-Battery-Doorbell-newest-model.jpg"
+                     alt="Ring Battery Doorbell Newest Model" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-bell" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Tools &amp; Home Improvement</div>
+                    <h3>Ring Battery Doorbell — Newest Model</h3>
+                    <p>2K video with wide-angle view, up to 6x enhanced zoom, two-way talk, and a built-in battery for easy installation.</p>
+                    <a href="https://amzn.to/4xNBuGp" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Owala-FreeSip-Insulated-Stainless-Steel-Water-Bottle.jpg"
+                     alt="Owala FreeSip Insulated Water Bottle" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-bottle-water" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Kitchen &amp; Dining</div>
+                    <h3>Owala FreeSip Insulated Water Bottle, 24oz</h3>
+                    <p>BPA-free stainless steel sports bottle with a built-in straw, great for travel and everyday hydration.</p>
+                    <a href="https://amzn.to/3T5a6DS" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Fullstar-The-Original-Pro-Chopper.jpg"
+                     alt="Fullstar The Original Pro Chopper" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-kitchen-set" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Kitchen &amp; Dining</div>
+                    <h3>Fullstar Pro Chopper — 4-in-1</h3>
+                    <p>Vegetable chopper, spiralizer, and fruit slicer with container — a versatile kitchen gadget and popular gift.</p>
+                    <a href="https://amzn.to/4uX9I7F" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Instant-Pot-Duo-Plus-9-in-1-Multicooker.jpg"
+                     alt="Instant Pot Duo Plus 9-in-1 Multicooker" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-fire-burner" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Kitchen &amp; Dining</div>
+                    <h3>Instant Pot Duo Plus 9-in-1 Multicooker, 6 Qt</h3>
+                    <p>Pressure cooker, slow cooker, rice maker, steamer, sauté, yogurt maker, and warmer — with an app offering 800+ recipes.</p>
+                    <a href="https://amzn.to/4xRTBLv" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/ZELUS-Weighted-Vest.jpg"
+                     alt="ZELUS Weighted Vest" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-dumbbell" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Sports &amp; Outdoors</div>
+                    <h3>ZELUS Weighted Vest (6–30 lb options)</h3>
+                    <p>Adjustable weighted vest with a reflective stripe, built for strength training, running, and muscle-building workouts.</p>
+                    <a href="https://amzn.to/4vBE4xW" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/BAND-AID-Brand-Travel-Ready.jpg"
+                     alt="BAND-AID Brand Travel Ready First Aid Kit" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-suitcase-medical" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Sports &amp; Outdoors</div>
+                    <h3>BAND-AID Travel Ready First Aid Kit</h3>
+                    <p>Portable emergency kit for minor wound care — ideal for home, car, camping, and travel essentials.</p>
+                    <a href="https://amzn.to/4vv23i1" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-icon">
+                <img src="https://raw.githubusercontent.com/tonyfadil/fadnaoglobaltradellc/main/Stanley-All-Day-Julienne-Soft-Cooler.jpg"
+                     alt="Stanley All Day Soft Cooler Bag" class="deal-img"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                <i class="fas fa-mug-hot" style="display:none;"></i>
+                </div>
+                <div class="deal-card-body">
+                    <div class="deal-genre">Sports &amp; Outdoors</div>
+                    <h3>Stanley All Day Soft Cooler Bag</h3>
+                    <p>Insulated, zippered travel cooler and lunch bag that's BPA-free — built for full-day outings.</p>
+                    <a href="https://amzn.to/3SR4bSR" target="_blank" rel="sponsored" class="book-btn"><i class="fab fa-amazon"></i> View on Amazon</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -3363,13 +3373,13 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#community">Facebook Community</a></li>
-                    <li><a href="#worldcup2026">World Cup 2026</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#newsletter">Newsletter</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
+        <p class="footer-disclosure">As an Amazon Associate, Fad Nao Global Trade LLC earns from qualifying purchases. Some links on this site are affiliate links — if you click through and make a purchase, we may earn a small commission at no additional cost to you. We only feature products and titles we believe add real value.</p>
         <div class="footer-bottom">
             <span>© 2026 Fad Nao Global Trade LLC. All Rights Reserved.</span>
             <span>🇺🇸 New York, United States &nbsp;|&nbsp; 🇧🇯 Benin</span>
@@ -3924,200 +3934,12 @@ const observer = new IntersectionObserver(entries => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .wc-team, .wc-fact, .community-widget-card').forEach(el => {
+document.querySelectorAll('.card, .book-card, .pricing-card, .testimonial, .community-widget-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, transform 0.3s';
     observer.observe(el);
 });
-
-// ══════════════════════════════════════════════════════════════════
-// LIVE TRAFFIC WIDGET
-// Shows a "visitors online" pill (top-right) and animated notification
-// bubbles (bottom-left) showing real-looking visitor activity.
-// Uses BroadcastChannel for real same-browser tab detection,
-// and simulates a global audience matching Fad Nao's reach.
-// ══════════════════════════════════════════════════════════════════
-(function () {
-    'use strict';
-
-    // Visitor pool — locations matching the site's real audience
-    var VISITORS = [
-        { flag: '🇺🇸', loc: 'New York, US',           page: 'Publishing Services' },
-        { flag: '🇺🇸', loc: 'Los Angeles, US',         page: 'Books & Publications' },
-        { flag: '🇺🇸', loc: 'Chicago, US',             page: 'Contact Page' },
-        { flag: '🇺🇸', loc: 'Houston, US',             page: 'World Cup 2026' },
-        { flag: '🇺🇸', loc: 'Atlanta, US',             page: 'IT Consulting' },
-        { flag: '🇺🇸', loc: 'Miami, US',               page: 'Translation Services' },
-        { flag: '🇫🇷', loc: 'Paris, France',           page: 'Translation Services' },
-        { flag: '🇧🇯', loc: 'Cotonou, Benin',          page: 'International Trade' },
-        { flag: '🇧🇯', loc: 'Porto-Novo, Benin',       page: 'Publishing Services' },
-        { flag: '🇨🇦', loc: 'Toronto, Canada',         page: 'Books & Publications' },
-        { flag: '🇬🇧', loc: 'London, UK',              page: 'Publishing Packages' },
-        { flag: '🇩🇪', loc: 'Berlin, Germany',         page: 'IT Consulting' },
-        { flag: '🇳🇬', loc: 'Lagos, Nigeria',          page: 'Contact Page' },
-        { flag: '🇸🇳', loc: 'Dakar, Senegal',          page: 'Translation Services' },
-        { flag: '🇧🇷', loc: 'São Paulo, Brazil',       page: 'World Cup 2026' },
-        { flag: '🇮🇳', loc: 'Mumbai, India',           page: 'Linux IT Guide' },
-        { flag: '🇦🇺', loc: 'Sydney, Australia',       page: 'Books & Publications' },
-        { flag: '🇲🇦', loc: 'Casablanca, Morocco',     page: 'International Trade' },
-        { flag: '🇯🇵', loc: 'Tokyo, Japan',            page: 'IT Consulting' },
-        { flag: '🇪🇸', loc: 'Madrid, Spain',           page: 'World Cup 2026' },
-        { flag: '🇵🇹', loc: 'Lisbon, Portugal',        page: 'Books & Publications' },
-        { flag: '🇲🇽', loc: 'Mexico City, Mexico',     page: 'World Cup 2026' },
-        { flag: '🇬🇭', loc: 'Accra, Ghana',            page: 'Publishing Packages' },
-        { flag: '🇿🇦', loc: 'Cape Town, SA',           page: 'IT Consulting' },
-        { flag: '🇨🇲', loc: 'Douala, Cameroon',        page: 'International Trade' },
-        { flag: '🇹🇬', loc: 'Lomé, Togo',              page: 'Publishing Services' },
-        { flag: '🇨🇮', loc: "Abidjan, Côte d'Ivoire",  page: 'Publishing Services' },
-        { flag: '🇸🇦', loc: 'Riyadh, Saudi Arabia',    page: 'World Cup 2026' },
-    ];
-
-    var ACTIONS = ['is viewing', 'just opened', 'is reading', 'checked out', 'is browsing'];
-    var AVATAR_COLORS = ['#C8962A','#1A4A8A','#E8B84B','#0F2D66','#4ade80','#f97316','#a855f7','#06b6d4'];
-    var AVATAR_ICONS  = ['👤','👩','👨','🧑','🙋','👦','👧'];
-
-    var onlineCount = 0;
-    var bubbleTimer  = null;
-    var driftTimer   = null;
-
-    function rand(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
-    function pick(arr)  { return arr[rand(0, arr.length - 1)]; }
-
-    // ── Update the counter pill ─────────────────────────────────
-    function updateCounter(n) {
-        var el       = document.getElementById('vcCount');
-        var avatarEl = document.getElementById('vcAvatars');
-        if (!el || !avatarEl) return;
-
-        // Animate number pop
-        var prev = parseInt(el.textContent) || 0;
-        if (prev !== n) {
-            el.style.transition = 'transform 0.18s ease';
-            el.style.transform  = 'scale(1.38)';
-            setTimeout(function () { el.style.transform = 'scale(1)'; }, 200);
-        }
-        el.textContent = n;
-
-        // Rebuild avatar stack
-        avatarEl.innerHTML = '';
-        var shown = Math.min(n, 4);
-        for (var i = 0; i < shown; i++) {
-            var av = document.createElement('div');
-            av.className       = 'vc-avatar';
-            av.style.background = AVATAR_COLORS[i % AVATAR_COLORS.length];
-            av.title           = 'Visitor from ' + pick(VISITORS).loc;
-            av.textContent     = AVATAR_ICONS[i % AVATAR_ICONS.length];
-            avatarEl.appendChild(av);
-        }
-        if (n > 4) {
-            var more = document.createElement('div');
-            more.className          = 'vc-avatar';
-            more.style.background   = '#334155';
-            more.style.fontSize     = '9px';
-            more.style.fontWeight   = '700';
-            more.style.color        = 'rgba(255,255,255,0.85)';
-            more.textContent        = '+' + (n - 4);
-            avatarEl.appendChild(more);
-        }
-    }
-
-    // ── Create one notification bubble ─────────────────────────
-    function createBubble(visitor, action) {
-        var container = document.getElementById('liveTraffic');
-        if (!container) return;
-
-        var bubble       = document.createElement('div');
-        bubble.className = 'traffic-bubble';
-        bubble.innerHTML =
-            '<div class="traffic-live-dot"></div>' +
-            '<span class="traffic-flag">' + visitor.flag + '</span>' +
-            '<span class="traffic-text">Someone from <strong>' + visitor.loc + '</strong> ' +
-            action + ' <strong>' + visitor.page + '</strong></span>';
-        container.appendChild(bubble);
-
-        // Cap at 3 visible bubbles
-        var all = container.querySelectorAll('.traffic-bubble');
-        if (all.length > 3) {
-            var oldest = all[0];
-            oldest.classList.add('bubble-out');
-            setTimeout(function () { if (oldest.parentNode) oldest.remove(); }, 460);
-        }
-
-        // Auto-dismiss after 5.8 s
-        setTimeout(function () {
-            bubble.classList.add('bubble-out');
-            setTimeout(function () { if (bubble.parentNode) bubble.remove(); }, 460);
-        }, 5800);
-    }
-
-    // ── Show one random visitor, then schedule the next ────────
-    function showNext() {
-        createBubble(pick(VISITORS), pick(ACTIONS));
-        // Occasionally nudge the count ±1
-        if (Math.random() < 0.42) {
-            var delta = Math.random() < 0.56 ? 1 : -1;
-            onlineCount = Math.max(5, Math.min(58, onlineCount + delta));
-            updateCounter(onlineCount);
-        }
-        clearTimeout(bubbleTimer);
-        bubbleTimer = setTimeout(showNext, rand(9000, 19000));
-    }
-
-    // ── BroadcastChannel: detect real same-browser tabs ────────
-    try {
-        var bc = new BroadcastChannel('fadnao-live-v2');
-        bc.postMessage({ t: 'join' });
-        bc.onmessage = function (e) {
-            if (e.data && e.data.t === 'join') {
-                onlineCount = Math.min(58, onlineCount + 1);
-                updateCounter(onlineCount);
-                bc.postMessage({ t: 'ack' });
-            }
-            if (e.data && e.data.t === 'leave') {
-                onlineCount = Math.max(5, onlineCount - 1);
-                updateCounter(onlineCount);
-            }
-        };
-        window.addEventListener('beforeunload', function () {
-            try { bc.postMessage({ t: 'leave' }); } catch(e) {}
-        });
-    } catch (e) { /* BroadcastChannel not supported — no-op */ }
-
-    // ── Init ────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', function () {
-
-        // Seed count by time-of-day (NY timezone proxy)
-        var hour = new Date().getHours();
-        onlineCount = (hour >= 8 && hour <= 23) ? rand(13, 38) : rand(5, 16);
-        updateCounter(onlineCount);
-
-        // Optional: hit a free counter API so the count seeds from real traffic.
-        // Silent fail — widget works fine without it.
-        try {
-            fetch('https://api.countapi.xyz/hit/fadnaoglobal2026/hits')
-                .then(function (r) { return r.json(); })
-                .then(function (d) {
-                    var h = new Date().getHours();
-                    var base = (h >= 8 && h <= 23) ? rand(15, 46) : rand(6, 19);
-                    onlineCount = base;
-                    updateCounter(onlineCount);
-                })
-                .catch(function () { /* silent */ });
-        } catch (e) {}
-
-        // First bubble after 4 s
-        setTimeout(showNext, 4000);
-
-        // Slow background drift every 45 s (±1–3)
-        driftTimer = setInterval(function () {
-            var d = rand(-2, 3);
-            onlineCount = Math.max(5, Math.min(58, onlineCount + d));
-            updateCounter(onlineCount);
-        }, 45000);
-    });
-
-})(); // end live traffic IIFE
 </script>
 </body>
 </html>
